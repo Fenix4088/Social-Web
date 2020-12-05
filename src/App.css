@@ -1,3 +1,4 @@
+
 .app-wrapper {
     max-width: 1200px;
     margin: 0 auto;
@@ -11,27 +12,8 @@
     grid-gap: 10px;
 }
 
-.header {
-    grid-area: header;
-    background: #10d010;
-}
 
-.header img {
-    width: 50px;
-}
 
-.nav {
-    grid-area: nav;
-    background: #e3244b;
 
-}
 
-.content {
-    grid-area: content;
-    background: #526cee;
 
-}
-
-.content img {
-    width: 100%;
-}
