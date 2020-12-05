@@ -1,33 +1,19 @@
-import React from 'react';
+import logo from './logo.svg';
 import './App.css';
+import Header from './components/Header';
+import Navbar from './components/Navbar';
+import Profile from './components/Profile';
 
-import Accordion from './components/Accordion/Accordion';
-import { Rating } from './components/Rating/Rating';
-
-
-function App() {
+const App = () => {
   return (
-    <div>
-      <PageTitle value={'This is App Component'} />
-      Article 1
-      <Rating value={3} />
-      <Accordion titleValue={"Menu"} collapsed={true}/>
-      <Accordion  titleValue={"Users"} collapsed={false}/>
-      Artical 2
-      <Rating value={4} />
+    <div className="app-wrapper">
+      <Header />
+      <Navbar />
+      <Profile />
+
     </div>
   );
-}
+};
 
-type PageTitlePropsType = {
-  value: string
-}
-
-function PageTitle(props: PageTitlePropsType) {
-  console.log('App rendering');
-  return (
-    <h1>{props.value}</h1>
-  );
-}
 
 export default App;
