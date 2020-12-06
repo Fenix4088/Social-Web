@@ -1,0 +1,12 @@
+
+.item  {
+    color: greenyellow;
+}
+
+.item_img {
+    width: 50px !important;
+    height: 50px;
+    border-radius: 25px;
+    object-fit: cover;
+}
+

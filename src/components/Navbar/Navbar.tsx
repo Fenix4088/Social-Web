@@ -1,8 +1,9 @@
 import React from 'react';
 import classes from './Navbar.module.css'
 
+
 const Navbar = () => {
-  console.log(classes);
+
   return  (
     <nav className={classes.nav}>
       <div className={`${classes.item} ${classes.active}`}>
