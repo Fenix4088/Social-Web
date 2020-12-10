@@ -4,7 +4,7 @@ import classes from './Post.module.css';
 
 interface PostTypes {
   message: string,
-  likeCounts: number,
+  likeCount: number,
 }
 
 const Post = (props: PostTypes) => {
@@ -13,7 +13,7 @@ const Post = (props: PostTypes) => {
       <img className={classes.item_img} src="https://fwcdn.pl/webv/23/84/22384/z01.22384.4.jpg" alt="Avatar" />
       {props.message}
       <div>
-        <span>Like {props.likeCounts}</span>
+        <span>Like {props.likeCount}</span>
       </div>
     </div>
   );
