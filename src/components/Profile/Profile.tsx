@@ -8,8 +8,8 @@ const Profile = () => {
 
   return  (
     <main>
-      <div>
-        <img src="https://cdn.cnn.com/cnnnext/dam/assets/181010131059-australia-best-beaches-cossies-beach-cocos3.jpg"
+      <div >
+        <img className={classes.imgHolder} src="https://cdn.cnn.com/cnnnext/dam/assets/181010131059-australia-best-beaches-cossies-beach-cocos3.jpg"
              alt="Background personal" />
       </div>
       <div>
