@@ -1,19 +1,33 @@
 import React from 'react';
 import Post from './Post/Post';
-
 import classes from './MyPosts.module.css';
+
+type PostsDataType = {
+  id: number
+  message: string
+  likes: number
+}
+
+const postsData: Array<PostsDataType> = [
+  { id: 1, message: 'Good day', likes: 15 },
+  { id: 2, message: 'Nice weather', likes: 6 },
+  { id: 3, message: 'I was in Rome!!!!', likes: 0 }
+];
 
 
 const MyPosts = () => {
 
   return (
-    <div>
-      My posts
-      <div>New post</div>
+    <div className={classes.postBlock}>
+      <h2>My posts</h2>
+      <div className={classes.postEdit}>
+        <textarea></textarea>
+        <button>Add post</button>
+      </div>
       <div>
-        <Post message={"Hi, how are you?"} likeCount={15}/>
-        <Post message={"I like this app!!"} likeCount={7}/>
-        <Post message={"Nice weather :-)"} likeCount={1}/>
+
+        {postsData.map(post => <Post key={post.id} message={post.message} likeCount={post.likes} />)}
+
       </div>
     </div>
   );

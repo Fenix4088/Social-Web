@@ -1,25 +1,20 @@
 import React from 'react';
 import MyPosts from './MyPosts/MyPosts';
+import ProfileInfo from './ProfileInfo/ProfileInfo';
 
-import classes from './Profile.module.css'
+import classes from './Profile.module.css';
 
 
 const Profile = () => {
 
-  return  (
+  return (
     <main>
-      <div >
-        <img className={classes.imgHolder} src="https://cdn.cnn.com/cnnnext/dam/assets/181010131059-australia-best-beaches-cossies-beach-cocos3.jpg"
-             alt="Background personal" />
-      </div>
-      <div>
-        avatar + desc
-      </div>
+      <ProfileInfo />
       <MyPosts />
     </main>
 
   );
-}
+};
 
 export default Profile;
 
