@@ -1,0 +1,9 @@
+.title {
+    color: gold;
+}
+
+
+.friendsWrapper {
+    display: flex;
+    flex-flow: row wrap;
+}

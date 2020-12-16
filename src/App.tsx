@@ -12,7 +12,7 @@ import News from './components/News/News';
 import { stateType } from './redux/state';
 
 type AppPropsType = {
-  appState: stateType
+  state: stateType
 }
 
 
@@ -21,14 +21,14 @@ const App = (props: AppPropsType) => {
     <BrowserRouter>
       <div className="app-wrapper">
         <Header />
-        <Navbar />
+        <Navbar data={props.state.sidebar}/>
         <div className="app-wrapper-content">
           <Route path="/dialogs"
-                 render={() => <Dialogs
-                   dialogsData={props.appState.messagesPageData.dialogsData}
-                   messagesData={props.appState.messagesPageData.messagesData} />}
+                 render={() => <Dialogs data={props.state.dialogsPageData} />}
           />
-          <Route path="/profile" render={() => <Profile posts={props.appState.profilePageData.postsData} />} />
+          <Route path="/profile"
+                 render={() => <Profile data={props.state.profilePageData} />}
+          />
           <Route path="/news" component={News} />
           <Route path="/music" component={Music} />
           <Route path="/settings" component={Settings} />

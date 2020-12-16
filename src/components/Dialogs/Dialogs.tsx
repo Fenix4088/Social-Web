@@ -7,23 +7,25 @@ import classes from './Dialogs.module.css';
 import { DialogItemType, MessageDataType } from '../../redux/state';
 
 type DialogsPropsType = {
-  dialogsData: Array<DialogItemType>
-  messagesData: Array<MessageDataType>
+  data: {
+    dialogsData: Array<DialogItemType>
+    messagesData: Array<MessageDataType>
+  }
 }
 
 export const Dialogs = (props: DialogsPropsType) => {
-
   return (
     <div className={classes.dialog}>
+
       <div className={classes.dialogItems}>
 
-        {props.dialogsData.map(dialog => <DialogItem key={dialog.id} name={dialog.name} id={dialog.id} />)}
+        {props.data.dialogsData.map(dialog => <DialogItem key={dialog.id} name={dialog.name} id={dialog.id} logo={dialog.logo} />)}
 
       </div>
 
       <div className={classes.messages}>
 
-        {props.messagesData.map(message => <Message key={message.id} message={message.message} />)}
+        {props.data.messagesData.map(message => <Message key={message.id} message={message.message} />)}
 
       </div>
 

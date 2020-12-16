@@ -5,15 +5,17 @@ import classes from './Profile.module.css';
 import { PostsDataType } from '../../redux/state';
 
 
-export type MyPostsPropsType = {
-  posts: Array<PostsDataType>
+export type ProfilePropsType = {
+  data: {
+    postsData: Array<PostsDataType>
+  }
 }
 
-const Profile = (props: MyPostsPropsType) => {
+const Profile = (props: ProfilePropsType) => {
   return (
     <main>
       <ProfileInfo />
-      <MyPosts posts={props.posts} />
+      <MyPosts posts={props.data.postsData} />
     </main>
 
   );

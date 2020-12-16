@@ -1,8 +1,11 @@
-.nav {
-    grid-area: nav;
+.sidebarWrapper {
+    grid-area: sidebar;
     background-color: red;
     padding: 20px;
+}
 
+.nav {
+    margin-bottom: 50px;
 }
 
 .item a{
@@ -12,4 +15,7 @@
 
 .item a.active {
     color: gold;
+}
+
+.friendsWidget {
 }
