@@ -1,13 +1,10 @@
 import React from 'react';
 import Post from './Post/Post';
 import classes from './MyPosts.module.css';
-import { AppPropsTypes, PostsDataType } from '../../../index';
 import { MyPostsPropsType } from '../Profile';
 
 
-
 const MyPosts = (props: MyPostsPropsType) => {
-  console.log(props);
   return (
     <div className={classes.postBlock}>
       <h2>My posts</h2>

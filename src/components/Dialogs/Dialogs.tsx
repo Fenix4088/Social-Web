@@ -3,8 +3,8 @@ import React from 'react';
 import { Message } from './Message/Message';
 import { DialogItem } from './DialogItem/DialogItem';
 
-import { DialogItemType, MessageDataType } from '../../index';
 import classes from './Dialogs.module.css';
+import { DialogItemType, MessageDataType } from '../../redux/state';
 
 type DialogsPropsType = {
   dialogsData: Array<DialogItemType>

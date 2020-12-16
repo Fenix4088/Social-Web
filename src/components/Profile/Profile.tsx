@@ -1,8 +1,8 @@
 import React from 'react';
 import MyPosts from './MyPosts/MyPosts';
 import ProfileInfo from './ProfileInfo/ProfileInfo';
-import { PostsDataType } from '../../index';
 import classes from './Profile.module.css';
+import { PostsDataType } from '../../redux/state';
 
 
 export type MyPostsPropsType = {
@@ -13,7 +13,7 @@ const Profile = (props: MyPostsPropsType) => {
   return (
     <main>
       <ProfileInfo />
-      <MyPosts posts={props.posts}/>
+      <MyPosts posts={props.posts} />
     </main>
 
   );
