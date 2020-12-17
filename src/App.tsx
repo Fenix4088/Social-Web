@@ -5,7 +5,7 @@ import Header from './components/Header/Header';
 import Navbar from './components/Navbar/Navbar';
 import Profile from './components/Profile/Profile';
 import { Dialogs } from './components/Dialogs/Dialogs';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import Settings from './components/Settings/Settings';
 import Music from './components/Music/Music';
 import News from './components/News/News';
@@ -18,7 +18,6 @@ type AppPropsType = {
 
 const App = (props: AppPropsType) => {
   return (
-    <BrowserRouter>
       <div className="app-wrapper">
         <Header />
         <Navbar data={props.state.sidebar}/>
@@ -34,8 +33,6 @@ const App = (props: AppPropsType) => {
           <Route path="/settings" component={Settings} />
         </div>
       </div>
-    </BrowserRouter>
-
   );
 };
 
