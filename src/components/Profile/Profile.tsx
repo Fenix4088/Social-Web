@@ -9,13 +9,14 @@ export type ProfilePropsType = {
   data: {
     postsData: Array<PostsDataType>
   }
+  addPost: Function
 }
 
 const Profile = (props: ProfilePropsType) => {
   return (
     <main>
       <ProfileInfo />
-      <MyPosts posts={props.data.postsData} />
+      <MyPosts posts={props.data.postsData} addPost={props.addPost}/>
     </main>
 
   );

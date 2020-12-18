@@ -13,6 +13,7 @@ import { stateType } from './redux/state';
 
 type AppPropsType = {
   state: stateType
+  addPost: Function
 }
 
 
@@ -26,7 +27,9 @@ const App = (props: AppPropsType) => {
                  render={() => <Dialogs data={props.state.dialogsPageData} />}
           />
           <Route path="/profile"
-                 render={() => <Profile data={props.state.profilePageData} />}
+                 render={() => <Profile
+                   data={props.state.profilePageData}
+                   addPost={props.addPost}/>}
           />
           <Route path="/news" component={News} />
           <Route path="/music" component={Music} />

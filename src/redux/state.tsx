@@ -1,3 +1,5 @@
+import { rerenderEntireTree } from '../renders';
+
 export type stateType = {
   profilePageData: {
     postsData: Array<PostsDataType>
@@ -45,20 +47,58 @@ export const state: stateType = {
       { id: 4, message: 'Nice picture? bro!!!!' }, { id: 5, message: 'I miss you :-(' }
     ],
     dialogsData: [
-      { id: 1, name: 'Yehor', logo: "https://c0.klipartz.com/pngpicture/795/938/gratis-png-cerdo-blanco-grande-caras-divertidas-de-dibujos-animados-s.png" },
-      { id: 2, name: 'Andrey', logo: "https://e7.pngegg.com/pngimages/95/869/png-clipart-walrus-santa-claus-drawing-funny-cartoon-faces-s-food-face.png" },
-      { id: 3, name: 'Viktor', logo: "https://w7.pngwing.com/pngs/2/519/png-transparent-little-penguin-bird-face-funny-cartoon-faces-s-face-smiley-bird.png" },
-      { id: 4, name: 'Dima', logo: "https://wallpaperaccess.com/full/777162.png" },
-      { id: 5, name: 'Sveta', logo: "https://funnypicture.org/wallpaper/2015/05/funny-cartoon-faces-28-high-resolution-wallpaper.png" }
+      {
+        id: 1,
+        name: 'Yehor',
+        logo: 'https://c0.klipartz.com/pngpicture/795/938/gratis-png-cerdo-blanco-grande-caras-divertidas-de-dibujos-animados-s.png'
+      },
+      {
+        id: 2,
+        name: 'Andrey',
+        logo: 'https://e7.pngegg.com/pngimages/95/869/png-clipart-walrus-santa-claus-drawing-funny-cartoon-faces-s-food-face.png'
+      },
+      {
+        id: 3,
+        name: 'Viktor',
+        logo: 'https://w7.pngwing.com/pngs/2/519/png-transparent-little-penguin-bird-face-funny-cartoon-faces-s-face-smiley-bird.png'
+      },
+      { id: 4, name: 'Dima', logo: 'https://wallpaperaccess.com/full/777162.png' },
+      {
+        id: 5,
+        name: 'Sveta',
+        logo: 'https://funnypicture.org/wallpaper/2015/05/funny-cartoon-faces-28-high-resolution-wallpaper.png'
+      }
     ]
   },
   sidebar: {
     friends: [
-      {id: 1, name: "Sveta", logo: "https://c0.klipartz.com/pngpicture/795/938/gratis-png-cerdo-blanco-grande-caras-divertidas-de-dibujos-animados-s.png"},
-      {id: 2, name: "Anna", logo: "https://w7.pngwing.com/pngs/2/519/png-transparent-little-penguin-bird-face-funny-cartoon-faces-s-face-smiley-bird.png"},
-      {id: 3, name: "Dima", logo: "https://funnypicture.org/wallpaper/2015/05/funny-cartoon-faces-28-high-resolution-wallpaper.png"},
+      {
+        id: 1,
+        name: 'Sveta',
+        logo: 'https://c0.klipartz.com/pngpicture/795/938/gratis-png-cerdo-blanco-grande-caras-divertidas-de-dibujos-animados-s.png'
+      },
+      {
+        id: 2,
+        name: 'Anna',
+        logo: 'https://w7.pngwing.com/pngs/2/519/png-transparent-little-penguin-bird-face-funny-cartoon-faces-s-face-smiley-bird.png'
+      },
+      {
+        id: 3,
+        name: 'Dima',
+        logo: 'https://funnypicture.org/wallpaper/2015/05/funny-cartoon-faces-28-high-resolution-wallpaper.png'
+      }
     ]
   }
+};
+
+export const addPost = (postMessage: string): void => {
+  const newPost = {
+    id: 4,
+    message: postMessage,
+    likes: 0
+  };
+  state.profilePageData.postsData.push(newPost);
+  rerenderEntireTree(state);
 };
 
 
