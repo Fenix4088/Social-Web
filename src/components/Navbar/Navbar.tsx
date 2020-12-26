@@ -1,5 +1,5 @@
 import React from 'react';
-import classes from './Navbar.module.css';
+import classes from './Navbar.module.scss';
 import { NavLink } from 'react-router-dom';
 import { FriendsItemType } from '../../redux/state';
 import { FriendsSidebarWidget } from './FriendsSidebarWidget/FriendsSidebarWidget';

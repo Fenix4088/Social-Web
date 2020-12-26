@@ -1,5 +1,5 @@
 import React from 'react';
-import classes from './Message.module.css';
+import classes from './Message.module.scss';
 
 
 type MessageType = {

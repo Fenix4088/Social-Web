@@ -1,7 +1,7 @@
 import React from 'react';
 import MyPosts from './MyPosts/MyPosts';
 import ProfileInfo from './ProfileInfo/ProfileInfo';
-import classes from './Profile.module.css';
+import classes from './Profile.module.scss';
 import { PostsDataType } from '../../redux/state';
 
 

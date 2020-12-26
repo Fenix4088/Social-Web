@@ -1,7 +1,7 @@
 import React from 'react';
 import { FriendsItemType } from '../../../redux/state';
 import { Friend } from './Friend/Friend';
-import classes from './FriendsSidebarWidget.module.css';
+import classes from './FriendsSidebarWidget.module.scss';
 
 type FriendsSidebarWidgetType = {
   friends: Array<FriendsItemType>
