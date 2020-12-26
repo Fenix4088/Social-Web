@@ -13,12 +13,12 @@ type DialogsPropsType = {
   }
 }
 
-export const Dialogs = (props: DialogsPropsType) => {
+export const Dialogs:React.FC<DialogsPropsType> = (props) => {
   return (
     <div className={classes.dialog}>
 
       <div className={classes.dialogItems}>
-
+      
         {props.data.dialogsData.map(dialog => <DialogItem key={dialog.id} name={dialog.name} id={dialog.id} logo={dialog.logo} />)}
 
       </div>

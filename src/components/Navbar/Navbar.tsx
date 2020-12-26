@@ -10,7 +10,7 @@ type NavbarPropsType = {
   }
 }
 
-const Navbar = (props: NavbarPropsType) => {
+const Navbar:React.FC<NavbarPropsType> = (props) => {
   return (
     <div className={classes.sidebarWrapper}>
 

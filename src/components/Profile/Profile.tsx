@@ -12,7 +12,7 @@ export type ProfilePropsType = {
   addPost: Function
 }
 
-const Profile = (props: ProfilePropsType) => {
+const Profile:React.FC<ProfilePropsType> = (props) => {
   return (
     <main>
       <ProfileInfo />

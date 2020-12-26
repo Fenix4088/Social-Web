@@ -2,13 +2,14 @@ import React from 'react';
 import Post from './Post/Post';
 import classes from './MyPosts.module.css';
 import { PostsDataType } from '../../../redux/state';
+import {ProfilePropsType} from "../Profile";
 
 type MyPostsPropsType = {
   posts: Array<PostsDataType>
   addPost: Function
 }
 
-const MyPosts = (props: MyPostsPropsType) => {
+const MyPosts:React.FC<MyPostsPropsType> = (props) => {
   const newPostElement = React.createRef<HTMLTextAreaElement>();
 
 

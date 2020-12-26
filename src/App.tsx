@@ -17,7 +17,7 @@ type AppPropsType = {
 }
 
 
-const App = (props: AppPropsType) => {
+const App: React.FC<AppPropsType> = (props) => {
   return (
       <div className="app-wrapper">
         <Header />

@@ -4,7 +4,7 @@ import classes from './DialogItem.module.css';
 import { DialogItemType } from '../../../redux/state';
 
 
-export const DialogItem = (props: DialogItemType) => {
+export const DialogItem:React.FC<DialogItemType> = (props) => {
   return (
     <div className={`${classes.dialog} ${classes.active}`}>
       <img className={classes.userLogo} src={props.logo} alt="Avatar" />
