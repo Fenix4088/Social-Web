@@ -4,7 +4,7 @@ import App from './App';
 import {addPost, state, stateType, subscribe, updateNewPostText} from './redux/state';
 import React from 'react';
 
- const rerenderEntireTree = (): void => {
+ const rerenderEntireTree = (state: stateType): void => {
     ReactDOM.render(
         <BrowserRouter>
             <App state={state} addPost={addPost} updateNewPostText={updateNewPostText}/>
@@ -14,5 +14,5 @@ import React from 'react';
 }
 
 
-rerenderEntireTree();
+rerenderEntireTree(state);
 subscribe(rerenderEntireTree);

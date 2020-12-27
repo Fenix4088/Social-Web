@@ -94,7 +94,7 @@ export const state: stateType = {
     ]
   }
 };
-
+//! Functions for changing State
 export const addPost = (): void => {
   const newPost = {
     id: 4,
@@ -114,7 +114,7 @@ export const updateNewPostText = (newText: string): void => {
   state.profilePageData.newPostText = newText;
   rerenderEntireTree(state);
 };
-export const subscribe = (observer: () => void) => {
+export const subscribe = (observer: (state: stateType) => void) => {
   rerenderEntireTree = observer;
 }
 
