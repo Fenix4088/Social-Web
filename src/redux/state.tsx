@@ -1,5 +1,4 @@
-
-export type stateType = {
+export type StateType = {
     profilePageData: {
         postsData: Array<PostsDataType>
         newPostText: string
@@ -31,22 +30,26 @@ export type FriendsItemType = {
     name: string
     logo: string
 }
+export type ActionType = {
+    type: string
+    newText?: string
+}
 
-//! Store
+//! Fake Store
 export const store = {
     _state: {
         profilePageData: {
             postsData: [
-                { id: 1, message: 'Good day', likes: 15 },
-                { id: 2, message: 'Nice weather', likes: 6 },
-                { id: 3, message: 'I was in Rome!!!!', likes: 0 }
+                {id: 1, message: 'Good day', likes: 15},
+                {id: 2, message: 'Nice weather', likes: 6},
+                {id: 3, message: 'I was in Rome!!!!', likes: 0}
             ],
             newPostText: ""
         },
         dialogsPageData: {
             messagesData: [
-                { id: 1, message: 'Hi' }, { id: 2, message: 'How are you?' }, { id: 3, message: 'Where are you from?' },
-                { id: 4, message: 'Nice picture? bro!!!!' }, { id: 5, message: 'I miss you :-(' }
+                {id: 1, message: 'Hi'}, {id: 2, message: 'How are you?'}, {id: 3, message: 'Where are you from?'},
+                {id: 4, message: 'Nice picture? bro!!!!'}, {id: 5, message: 'I miss you :-('}
             ],
             dialogsData: [
                 {
@@ -64,7 +67,7 @@ export const store = {
                     name: 'Viktor',
                     logo: 'https://w7.pngwing.com/pngs/2/519/png-transparent-little-penguin-bird-face-funny-cartoon-faces-s-face-smiley-bird.png'
                 },
-                { id: 4, name: 'Dima', logo: 'https://wallpaperaccess.com/full/777162.png' },
+                {id: 4, name: 'Dima', logo: 'https://wallpaperaccess.com/full/777162.png'},
                 {
                     id: 5,
                     name: 'Sveta',
@@ -92,32 +95,33 @@ export const store = {
             ]
         }
     },
-
-    _callSubscriber (state: stateType) {
+    _callSubscriber(state: StateType) {
         console.log("State render")
     },
 
-    subscribe(observer: (state: stateType) => void) {
+    subscribe(observer: (state: StateType) => void) {
         this._callSubscriber = observer;
     },
-
-    addPost ():void {
-        const newPost = {
-            id: 4,
-            message: this._state.profilePageData.newPostText,
-            likes: 0
-        };
-        this._state.profilePageData.postsData.push(newPost);
-        this._state.profilePageData.newPostText = "";
-        this._callSubscriber(this._state);
-    },
-
-    updateNewPostText (newText: string): void {
-        this._state.profilePageData.newPostText = newText;
-        this._callSubscriber(this._state);
-    },
-
-    getState(): stateType {
+    getState(): StateType {
         return this._state;
     },
+//! Fake Dispatcher
+    dispatch(action: ActionType) {
+        if (action.type === "ADD-POST") {
+            const newPost = {
+                id: 4,
+                message: this._state.profilePageData.newPostText,
+                likes: 0
+            };
+            this._state.profilePageData.postsData.push(newPost);
+            this._state.profilePageData.newPostText = "";
+            this._callSubscriber(this._state);
+        } else if (action.type === "UPDATE-NEW-POST-TEXT") {
+            if (action.newText) {
+                this._state.profilePageData.newPostText = action.newText;
+                this._callSubscriber(this._state);
+            }
+
+        }
+    }
 }

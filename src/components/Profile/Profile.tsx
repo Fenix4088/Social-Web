@@ -2,7 +2,7 @@ import React from 'react';
 import MyPosts from './MyPosts/MyPosts';
 import ProfileInfo from './ProfileInfo/ProfileInfo';
 import classes from './Profile.module.scss';
-import {PostsDataType} from '../../redux/state';
+import {ActionType, PostsDataType} from '../../redux/state';
 
 
 export type ProfilePropsType = {
@@ -10,8 +10,7 @@ export type ProfilePropsType = {
         postsData: Array<PostsDataType>
         newPostText: string
     }
-    addPost: () => void
-    updateNewPostText: (value: string) => void
+    dispatch: (action: ActionType) => void
 }
 
 const Profile: React.FC<ProfilePropsType> = (props) => {
@@ -20,9 +19,8 @@ const Profile: React.FC<ProfilePropsType> = (props) => {
             <ProfileInfo/>
             <MyPosts
                 posts={props.data.postsData}
-                addPost={props.addPost}
                 newPostText={props.data.newPostText}
-                updateNewPostText={props.updateNewPostText}
+                dispatch={props.dispatch}
             />
         </main>
 
