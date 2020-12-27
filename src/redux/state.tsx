@@ -35,6 +35,10 @@ export type ActionType = {
     newText?: string
 }
 
+//! Action types
+const ADD_POST = "ADD-POST";
+const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
+
 //! Fake Store
 export const store = {
     _state: {
@@ -107,7 +111,7 @@ export const store = {
     },
 //! Fake Dispatcher
     dispatch(action: ActionType) {
-        if (action.type === "ADD-POST") {
+        if (action.type === ADD_POST) {
             const newPost = {
                 id: 4,
                 message: this._state.profilePageData.newPostText,
@@ -116,12 +120,24 @@ export const store = {
             this._state.profilePageData.postsData.push(newPost);
             this._state.profilePageData.newPostText = "";
             this._callSubscriber(this._state);
-        } else if (action.type === "UPDATE-NEW-POST-TEXT") {
+        } else if (action.type === UPDATE_NEW_POST_TEXT) {
             if (action.newText) {
                 this._state.profilePageData.newPostText = action.newText;
                 this._callSubscriber(this._state);
             }
 
         }
+    }
+}
+
+export const addPostActionCreator = () => {
+    return {
+        type: ADD_POST
+    }
+}
+export const updateNewPostActionCreator = (text: string) => {
+    return {
+        type: UPDATE_NEW_POST_TEXT,
+        newText: text
     }
 }
