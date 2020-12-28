@@ -16,7 +16,6 @@ type AppPropsType = {
     dispatch: (action: ActionType) => void
 }
 
-
 const App: React.FC<AppPropsType> = (props) => {
     return (
         <div className="app-wrapper">
@@ -24,7 +23,7 @@ const App: React.FC<AppPropsType> = (props) => {
             <Navbar data={props.state.sidebar}/>
             <div className="app-wrapper-content">
                 <Route path="/dialogs"
-                       render={() => <Dialogs data={props.state.dialogsPageData}/>}
+                       render={() => <Dialogs data={props.state.dialogsPageData} dispatch={props.dispatch}/>}
                 />
                 <Route path="/profile"
                        render={() => <Profile
