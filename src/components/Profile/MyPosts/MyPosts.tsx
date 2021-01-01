@@ -1,13 +1,9 @@
 import React from "react";
 import Post from "./Post/Post";
 import classes from "./MyPosts.module.scss";
-import {
-    ActionType,
-    addPostCreator,
-    PostsDataType,
-    updateNewPostCreator
-} from "../../../redux/state";
+import { ActionType, PostsDataType } from "../../../redux/state";
 import { ProfilePropsType } from "../Profile";
+import {addPostCreator, updateNewPostCreator} from "../../../redux/profilePageReducer";
 
 type MyPostsPropsType = {
     posts: Array<PostsDataType>;
@@ -33,20 +29,12 @@ const MyPosts: React.FC<MyPostsPropsType> = (props) => {
         <div className={classes.postBlock}>
             <h2>My posts</h2>
             <div className={classes.postEdit}>
-                <textarea
-                    onChange={onPostChangeHandler}
-                    ref={newPostElement}
-                    value={props.newPostText}
-                />
+                <textarea onChange={onPostChangeHandler} ref={newPostElement} value={props.newPostText} />
                 <button onPointerDown={addPost}>Add post</button>
             </div>
             <div>
                 {props.posts.map((post) => (
-                    <Post
-                        key={post.id}
-                        message={post.message}
-                        likeCount={post.likes}
-                    />
+                    <Post key={post.id} message={post.message} likeCount={post.likes} />
                 ))}
             </div>
         </div>

@@ -7,20 +7,13 @@ type FriendsSidebarWidgetType = {
     friends: Array<FriendsItemType>;
 };
 
-export const FriendsSidebarWidget: React.FC<FriendsSidebarWidgetType> = (
-    props
-) => {
+export const FriendsSidebarWidget: React.FC<FriendsSidebarWidgetType> = (props) => {
     return (
         <div>
             <h3 className={classes.title}>My friends</h3>
             <div className={classes.friendsWrapper}>
                 {props.friends.map((friend) => (
-                    <Friend
-                        key={friend.id}
-                        id={friend.id}
-                        name={friend.name}
-                        logo={friend.logo}
-                    />
+                    <Friend key={friend.id} id={friend.id} name={friend.name} logo={friend.logo} />
                 ))}
             </div>
         </div>

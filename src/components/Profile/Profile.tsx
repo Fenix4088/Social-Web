@@ -16,11 +16,7 @@ const Profile: React.FC<ProfilePropsType> = (props) => {
     return (
         <main>
             <ProfileInfo />
-            <MyPosts
-                posts={props.data.postsData}
-                newPostText={props.data.newPostText}
-                dispatch={props.dispatch}
-            />
+            <MyPosts posts={props.data.postsData} newPostText={props.data.newPostText} dispatch={props.dispatch} />
         </main>
     );
 };
