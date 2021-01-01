@@ -1,7 +1,7 @@
 import React from "react";
 import classes from "./Navbar.module.scss";
 import { NavLink } from "react-router-dom";
-import { FriendsItemType } from "../../redux/state";
+import { FriendsItemType } from "../../redux/store";
 import { FriendsSidebarWidget } from "./FriendsSidebarWidget/FriendsSidebarWidget";
 
 type NavbarPropsType = {

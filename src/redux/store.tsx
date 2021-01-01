@@ -47,13 +47,6 @@ export type ActionType = {
     newText?: string;
 };
 
-/*
-//! Action types
-const ADD_POST = "ADD-POST";
-const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
-const SEND_MESSAGE = "SEND-MESSAGE";
-const UPDATE_NEW_MESSAGE_TEXT = "UPDATE_NEW_MESSAGE_TEXT";
-*/
 
 //! Fake Store
 export const store = {

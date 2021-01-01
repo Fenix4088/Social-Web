@@ -9,7 +9,7 @@ import { Route } from "react-router-dom";
 import Settings from "./components/Settings/Settings";
 import Music from "./components/Music/Music";
 import News from "./components/News/News";
-import { ActionType, StateType } from "./redux/state";
+import { ActionType, StateType } from "./redux/store";
 
 type AppPropsType = {
     state: StateType;
@@ -17,6 +17,7 @@ type AppPropsType = {
 };
 
 const App: React.FC<AppPropsType> = (props) => {
+
     return (
         <div className="app-wrapper">
             <Header />
