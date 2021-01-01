@@ -1,44 +1,34 @@
 import React, { ChangeEvent } from "react";
-
 import { Message } from "./Message/Message";
 import { DialogItem } from "./DialogItem/DialogItem";
-
 import classes from "./Dialogs.module.scss";
-import {
-    ActionType,
-    DialogItemType,
-    MessageDataType,
-} from "../../redux/store";
-import {sendMessageCreator, updateNewMessageCreator} from "../../redux/dialogsPageReducer";
+import {dialogsPageDataType} from "../../redux/entities";
 
 type DialogsPropsType = {
-    data: {
-        dialogsData: Array<DialogItemType>;
-        messagesData: Array<MessageDataType>;
-        newMessageText: string;
-    };
-    dispatch: (action: ActionType) => void;
+    updateNewMessage: (value: string) => void
+    onSendBtnClick: () => void
+    dialogsPageData: dialogsPageDataType
 };
 
 export const Dialogs: React.FC<DialogsPropsType> = (props) => {
-    const { newMessageText } = props.data;
+    const {dialogsData, messagesData, newMessageText} = props.dialogsPageData;
 
     const onTextareaChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
         const { value } = e.currentTarget;
-        props.dispatch(updateNewMessageCreator(value));
+        props.updateNewMessage(value)
     };
-    const onSendBtnClick = () => props.dispatch(sendMessageCreator());
+    const onSendBtnClick = () => props.onSendBtnClick();
 
     return (
         <div className={classes.dialog}>
             <div className={classes.dialogItems}>
-                {props.data.dialogsData.map((dialog) => (
+                {dialogsData.map((dialog) => (
                     <DialogItem key={dialog.id} name={dialog.name} id={dialog.id} logo={dialog.logo} />
                 ))}
             </div>
 
             <div className={classes.messages}>
-                {props.data.messagesData.map((message) => (
+                {messagesData.map((message) => (
                     <Message key={message.id} message={message.message} />
                 ))}
             </div>

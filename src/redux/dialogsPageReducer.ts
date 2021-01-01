@@ -1,15 +1,15 @@
-import { ActionType, dialogsPageDataType } from "./store";
+import {ActionType, dialogsPageDataType} from "./entities";
 
 const SEND_MESSAGE = "SEND-MESSAGE";
 const UPDATE_NEW_MESSAGE_TEXT = "UPDATE_NEW_MESSAGE_TEXT";
 
 const initialState = {
     messagesData: [
-        { id: 1, message: "Hi" },
-        { id: 2, message: "How are you?" },
-        { id: 3, message: "Where are you from?" },
-        { id: 4, message: "Nice picture? bro!!!!" },
-        { id: 5, message: "I miss you :-(" }
+        {id: 1, message: "Hi"},
+        {id: 2, message: "How are you?"},
+        {id: 3, message: "Where are you from?"},
+        {id: 4, message: "Nice picture? bro!!!!"},
+        {id: 5, message: "I miss you :-("}
     ],
     dialogsData: [
         {

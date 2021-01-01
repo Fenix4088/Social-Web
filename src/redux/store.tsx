@@ -2,7 +2,7 @@ import { profilePageReducer } from "./profilePageReducer";
 import { dialogsPageReducer } from "./dialogsPageReducer";
 import { sidebarReducer } from "./sidebarReducer";
 
-export type StateType = {
+/*export type StateType = {
     profilePageData: profilePageDataType;
     dialogsPageData: dialogsPageDataType;
     sidebar: sidebarType;
@@ -45,11 +45,11 @@ export type FriendsItemType = {
 export type ActionType = {
     type: string;
     newText?: string;
-};
+};*/
 
 
 //! Fake Store
-export const store = {
+/*export const store = {
     _state: {
         profilePageData: {
             postsData: [
@@ -139,10 +139,8 @@ export const store = {
         this._state.dialogsPageData = dialogsPageReducer(this._state.dialogsPageData, action);
         this._state.sidebar = sidebarReducer(this._state.sidebar, action);
         this._callSubscriber(this._state);
-
-
     }
-};
+};*/
 
 
 
