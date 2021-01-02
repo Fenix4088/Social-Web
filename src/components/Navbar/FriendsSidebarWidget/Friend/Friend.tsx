@@ -1,6 +1,6 @@
 import React from "react";
-import { FriendsItemType } from "../../../../redux/store";
 import classes from "./Friends.module.scss";
+import {FriendsItemType} from "../../../../redux/entities";
 
 export const Friend = (props: FriendsItemType) => {
     return (

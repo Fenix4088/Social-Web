@@ -7,11 +7,11 @@ export type ProfilePropsType = {
     store: StoreType
 };
 
-const Profile: React.FC<ProfilePropsType> = (props) => {
+const Profile: React.FC = () => {
     return (
         <main>
             <ProfileInfo />
-            <MyPostsContainer store={props.store} />
+            <MyPostsContainer />
         </main>
     );
 };

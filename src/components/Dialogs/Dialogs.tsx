@@ -1,4 +1,4 @@
-import React, { ChangeEvent } from "react";
+import React, {ChangeEvent, useContext} from "react";
 import { Message } from "./Message/Message";
 import { DialogItem } from "./DialogItem/DialogItem";
 import classes from "./Dialogs.module.scss";
@@ -11,6 +11,8 @@ type DialogsPropsType = {
 };
 
 export const Dialogs: React.FC<DialogsPropsType> = (props) => {
+
+
     const {dialogsData, messagesData, newMessageText} = props.dialogsPageData;
 
     const onTextareaChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {

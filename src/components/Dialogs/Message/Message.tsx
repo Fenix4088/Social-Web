@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useContext} from "react";
 import classes from "./Message.module.scss";
 
 type MessageType = {
