@@ -9,9 +9,9 @@ import { StoreContext } from "./StoreContext";
 const rerenderEntireTree = (): void => {
     ReactDOM.render(
         <BrowserRouter>
-            <StoreContext.Provider value={store}>
+            <Provider store={store}>
                 <App />
-            </StoreContext.Provider>
+            </Provider>
         </BrowserRouter>,
         document.getElementById("root")
     );

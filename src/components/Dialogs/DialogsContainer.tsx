@@ -1,44 +1,32 @@
 import React, {ChangeEvent, useContext} from "react";
 import {sendMessageCreator, updateNewMessageCreator} from "../../redux/dialogsPageReducer";
-import {StoreType} from "../../redux/reduxStore";
+import {AppStateType, StoreType} from "../../redux/reduxStore";
 import {Dialogs} from "./Dialogs";
-import { StoreContext } from "../../StoreContext";
 import {connect} from "react-redux";
-
-type DialogsPropsType = {
-    store: StoreType
-};
-
-export const DialogsContainer: React.FC = () => {
-    return (
-        <StoreContext.Consumer>
-            {(store) => {
-                const onTextareaChangeHandler = (value: string) => {
-                    store.dispatch(updateNewMessageCreator(value));
-                };
-                const onSendBtnClick = () => store.dispatch(sendMessageCreator());
-
-                return (
-                    <Dialogs
-                        updateNewMessage={onTextareaChangeHandler}
-                        onSendBtnClick={onSendBtnClick}
-                        dialogsPageData={store.getState().dialogsPageData}
-                    />
-                );
-            }}
-        </StoreContext.Consumer>
-    );
-};
+import {dialogsPageDataType} from "../../redux/entities";
 
 
+type MapStatePropsType = {
+    dialogsPageData: dialogsPageDataType
+}
 
-/*const mapStateToProps = (state: any): any => {
+type MapDispatchPropsType = {
+    updateNewMessage: (value: string) => void
+    onSendBtnClick: () => void
+}
+
+type OwmPropsType = {
+
+}
+
+
+const mapStateToProps = (state: AppStateType): MapStatePropsType => {
     return {
-        dialogsPageData: state.dialogsPage
+        dialogsPageData: state.dialogsPageData
     };
 };
 
-const mapDispatchToProps = (dispatch: any): any => {
+const mapDispatchToProps = (dispatch: any): MapDispatchPropsType => {
     return {
         updateNewMessage: (value: string) => {
             dispatch(updateNewMessageCreator(value));
@@ -49,4 +37,5 @@ const mapDispatchToProps = (dispatch: any): any => {
     };
 };
 
-export const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs);*/
+// <TStateProps = {}, TDispatchProps = {}, TOwnProps = {}, State = DefaultState>
+export const DialogsContainer = connect<MapStatePropsType, MapDispatchPropsType, OwmPropsType, AppStateType>(mapStateToProps, mapDispatchToProps)(Dialogs);

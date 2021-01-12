@@ -1,15 +1,16 @@
 import React from "react";
 import {addPostCreator, updateNewPostCreator} from "../../../redux/profilePageReducer";
 import MyPosts from "./MyPosts";
-import {StoreType} from "../../../redux/reduxStore";
+import {AppStateType, StoreType} from "../../../redux/reduxStore";
 import { StoreContext } from "../../../StoreContext";
+import {connect} from "react-redux";
+import {PostsDataType, profilePageDataType} from "../../../redux/entities";
 
 /*type MyPostsPropsType = {
     store: StoreType
 };*/
 
-const MyPostsContainer: React.FC = () => {
-
+/*const MyPostsContainer: React.FC = () => {
 
     return (
         <StoreContext.Consumer>
@@ -36,6 +37,37 @@ const MyPostsContainer: React.FC = () => {
             }
         </StoreContext.Consumer>
     );
+};*/
+
+
+type MapStateType = {
+    posts: Array<PostsDataType>,
+    newPostText: string
 };
+type MapDispatchType = {
+    updateNewPostText: (param: string) => void
+    addPost: () => void
+}
+
+type OwnPropsType = {
+
+}
+
+const mapStateToProps = (state: AppStateType): MapStateType => {
+    return {
+        posts: state.profilePageData.postsData,
+        newPostText: state.profilePageData.newPostText
+    }
+}
+
+const mapDispatchToProps = (dispatch: any): MapDispatchType => {
+    return {
+        addPost: () => { dispatch(addPostCreator()) },
+        updateNewPostText: (text: string) => { dispatch(updateNewPostCreator(text)) }
+    }
+}
+
+
+export const MyPostsContainer = connect<MapStateType, MapDispatchType, OwnPropsType, AppStateType>(mapStateToProps, mapDispatchToProps)(MyPosts);
 
 export default MyPostsContainer;
