@@ -3,6 +3,8 @@ import {profilePageReducer} from "./profilePageReducer";
 import {dialogsPageReducer} from "./dialogsPageReducer";
 import {sidebarReducer} from "./sidebarReducer";
 
+export type StoreType = typeof store;
+
 const reducers = combineReducers({
     profilePageData: profilePageReducer,
     dialogsPageData: dialogsPageReducer,
@@ -13,4 +15,3 @@ const reducers = combineReducers({
 
 export const store = createStore(reducers);
 
-export type StoreType = typeof store;
