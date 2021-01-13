@@ -13,9 +13,7 @@ type MyPostsPropsType = {
 const MyPosts: React.FC<MyPostsPropsType> = (props) => {
     const newPostElement = React.createRef<HTMLTextAreaElement>();
 
-    const onClickAddPost = () => {
-            props.addPost()
-    };
+    const onClickAddPost = () => {props.addPost()};
     const onPostChangeHandler = () => {
         const text = newPostElement.current?.value || "";
         props.updateNewPostText(text);

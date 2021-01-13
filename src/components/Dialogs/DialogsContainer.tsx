@@ -4,6 +4,7 @@ import {AppStateType, StoreType} from "../../redux/reduxStore";
 import {Dialogs} from "./Dialogs";
 import {connect} from "react-redux";
 import {dialogsPageDataType} from "../../redux/entities";
+import {Dispatch} from "redux";
 
 
 type MapStatePropsType = {
@@ -15,10 +16,6 @@ type MapDispatchPropsType = {
     onSendBtnClick: () => void
 }
 
-type OwmPropsType = {
-
-}
-
 
 const mapStateToProps = (state: AppStateType): MapStatePropsType => {
     return {
@@ -26,7 +23,7 @@ const mapStateToProps = (state: AppStateType): MapStatePropsType => {
     };
 };
 
-const mapDispatchToProps = (dispatch: any): MapDispatchPropsType => {
+const mapDispatchToProps = (dispatch: Dispatch): MapDispatchPropsType => {
     return {
         updateNewMessage: (value: string) => {
             dispatch(updateNewMessageCreator(value));
@@ -38,4 +35,4 @@ const mapDispatchToProps = (dispatch: any): MapDispatchPropsType => {
 };
 
 // <TStateProps = {}, TDispatchProps = {}, TOwnProps = {}, State = DefaultState>
-export const DialogsContainer = connect<MapStatePropsType, MapDispatchPropsType, OwmPropsType, AppStateType>(mapStateToProps, mapDispatchToProps)(Dialogs);
+export const DialogsContainer = connect<MapStatePropsType, MapDispatchPropsType, {}, AppStateType>(mapStateToProps, mapDispatchToProps)(Dialogs);

@@ -46,7 +46,6 @@ const initialState = {
 }
 
 export const dialogsPageReducer = (state: dialogsPageDataType = initialState, action: ActionType): dialogsPageDataType => {
-
     switch (action.type) {
         case UPDATE_NEW_MESSAGE_TEXT:
             if (action.newText) {

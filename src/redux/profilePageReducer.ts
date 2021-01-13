@@ -41,6 +41,7 @@ export const addPostCreator = (): ActionType => {
     };
 };
 export const updateNewPostCreator = (text: string): ActionType => {
+
     return {
         type: UPDATE_NEW_POST_TEXT,
         newText: text
