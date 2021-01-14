@@ -19,34 +19,6 @@ export type sidebarType = {
 };
 //! / MAIN TYPES
 
-//? ACTION TYPES
-
-/*export type ActionType = {
-    type: string;
-    newText?: string;
-};*/
-// DialogsPage
-export type SendMessageActionType = {
-    type: string;
-}
-export type UpdateNewMessageActionType = {
-    type: string;
-    newText: string;
-}
-// /DialogsPage
-// ProfilePage
-export type AddPostActionType = {
-    type: string;
-}
-
-export type UpdateNewPostActionType = {
-    type: string;
-    newText: string;
-}
-// /ProfilePage
-
-//? / ACTION TYPES
-
 export type PostsDataType = {
     id: number;
     message: string;

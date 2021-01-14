@@ -1,4 +1,13 @@
-import {dialogsPageDataType, SendMessageActionType, UpdateNewMessageActionType} from "./entities";
+import { dialogsPageDataType } from "./entities";
+
+type SendMessageActionType = {
+    type: typeof SEND_MESSAGE;
+};
+type UpdateNewMessageActionType = {
+    type: typeof UPDATE_NEW_MESSAGE_TEXT;
+    newText: string;
+};
+type ActionsType = SendMessageActionType | UpdateNewMessageActionType;
 
 const SEND_MESSAGE = "SEND-MESSAGE";
 const UPDATE_NEW_MESSAGE_TEXT = "UPDATE_NEW_MESSAGE_TEXT";
@@ -46,7 +55,7 @@ const initialState = {
 
 export const dialogsPageReducer = (
     state: dialogsPageDataType = initialState,
-    action: SendMessageActionType & UpdateNewMessageActionType
+    action: ActionsType
 ): dialogsPageDataType => {
     switch (action.type) {
         case UPDATE_NEW_MESSAGE_TEXT: {

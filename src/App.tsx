@@ -8,6 +8,7 @@ import Music from "./components/Music/Music";
 import News from "./components/News/News";
 import {DialogsContainer} from "./components/Dialogs/DialogsContainer";
 import {NavbarContainer} from "./components/Navbar/NavbarContainer";
+import {Users} from "./components/Users/Users";
 
 /*type AppPropsType = {
     store: StoreType
@@ -33,6 +34,7 @@ const App: React.FC = () => {
                 <Route path="/news" component={News}/>
                 <Route path="/music" component={Music}/>
                 <Route path="/settings" component={Settings}/>
+                <Route path="/users" render={() => <Users/>}/>
             </div>
         </div>
     );
