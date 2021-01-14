@@ -55,22 +55,16 @@ export const dialogsPageReducer = (
             if (action.newText) {
                 stateCopy.newMessageText = action.newText;
             }
+
             return stateCopy;
         }
         case SEND_MESSAGE: {
-
             const newMessage = {
                 id: state.messagesData.length + 1,
                 message: state.newMessageText
             };
 
-            const stateCopy = { ...state };
-            stateCopy.messagesData = [...state.messagesData];
-
-            stateCopy.messagesData.push(newMessage);
-            stateCopy.newMessageText = "";
-
-            return stateCopy;
+            return { ...state, messagesData: [...state.messagesData, newMessage], newMessageText: "" };
         }
 
         default: {

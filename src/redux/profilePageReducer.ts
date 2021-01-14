@@ -24,13 +24,7 @@ export const profilePageReducer = (
                 likes: 0
             };
 
-            const stateCopy = { ...state };
-            stateCopy.postsData = [...state.postsData];
-
-            stateCopy.postsData.push(newPost);
-            stateCopy.newPostText = "";
-
-            return stateCopy;
+            return { ...state, postsData: [...state.postsData, newPost], newPostText: "" };
         }
 
         case UPDATE_NEW_POST_TEXT: {
