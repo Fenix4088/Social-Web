@@ -1,15 +1,15 @@
-import {ActionType, dialogsPageDataType} from "./entities";
+import { ActionType, dialogsPageDataType } from "./entities";
 
 const SEND_MESSAGE = "SEND-MESSAGE";
 const UPDATE_NEW_MESSAGE_TEXT = "UPDATE_NEW_MESSAGE_TEXT";
 
 const initialState = {
     messagesData: [
-        {id: 1, message: "Hi"},
-        {id: 2, message: "How are you?"},
-        {id: 3, message: "Where are you from?"},
-        {id: 4, message: "Nice picture? bro!!!!"},
-        {id: 5, message: "I miss you :-("}
+        { id: 1, message: "Hi" },
+        { id: 2, message: "How are you?" },
+        { id: 3, message: "Where are you from?" },
+        { id: 4, message: "Nice picture? bro!!!!" },
+        { id: 5, message: "I miss you :-(" }
     ],
     dialogsData: [
         {
@@ -38,33 +38,45 @@ const initialState = {
         {
             id: 5,
             name: "Sveta",
-            logo:
-                "https://funnypicture.org/wallpaper/2015/05/funny-cartoon-faces-28-high-resolution-wallpaper.png"
+            logo: "https://funnypicture.org/wallpaper/2015/05/funny-cartoon-faces-28-high-resolution-wallpaper.png"
         }
     ],
     newMessageText: ""
-}
+};
 
-export const dialogsPageReducer = (state: dialogsPageDataType = initialState, action: ActionType): dialogsPageDataType => {
+export const dialogsPageReducer = (
+    state: dialogsPageDataType = initialState,
+    action: ActionType
+): dialogsPageDataType => {
     switch (action.type) {
-        case UPDATE_NEW_MESSAGE_TEXT:
+        case UPDATE_NEW_MESSAGE_TEXT: {
+            const stateCopy = { ...state };
+
             if (action.newText) {
-                state.newMessageText = action.newText;
+                stateCopy.newMessageText = action.newText;
             }
-            return state;
-        case SEND_MESSAGE:
+            return stateCopy;
+        }
+        case SEND_MESSAGE: {
+
             const newMessage = {
                 id: state.messagesData.length + 1,
                 message: state.newMessageText
             };
 
-            state.messagesData.push(newMessage);
-            state.newMessageText = "";
-            return state;
-        default:
-            return state;
-    }
+            const stateCopy = { ...state };
+            stateCopy.messagesData = [...state.messagesData];
 
+            stateCopy.messagesData.push(newMessage);
+            stateCopy.newMessageText = "";
+
+            return stateCopy;
+        }
+
+        default: {
+            return state;
+        }
+    }
 };
 
 export const sendMessageCreator = (): ActionType => {
@@ -78,4 +90,3 @@ export const updateNewMessageCreator = (messageText: string): ActionType => {
         newText: messageText
     };
 };
-

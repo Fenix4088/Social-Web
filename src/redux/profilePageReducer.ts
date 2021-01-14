@@ -1,4 +1,4 @@
-import {ActionType, profilePageDataType} from "./entities";
+import { ActionType, profilePageDataType } from "./entities";
 
 const ADD_POST = "ADD-POST";
 const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
@@ -10,29 +10,42 @@ const initialState = {
         { id: 3, message: "I was in Rome!!!!", likes: 0 }
     ],
     newPostText: ""
-}
+};
 
-export const profilePageReducer = (state: profilePageDataType = initialState, action: ActionType): profilePageDataType => {
+export const profilePageReducer = (
+    state: profilePageDataType = initialState,
+    action: ActionType
+): profilePageDataType => {
     switch (action.type) {
-        case ADD_POST:
+        case ADD_POST: {
             const newPost = {
                 id: 4,
                 message: state.newPostText,
                 likes: 0
             };
-            state.postsData.push(newPost);
-            state.newPostText = "";
-            return state;
-        case UPDATE_NEW_POST_TEXT:
+
+            const stateCopy = { ...state };
+            stateCopy.postsData = [...state.postsData];
+
+            stateCopy.postsData.push(newPost);
+            stateCopy.newPostText = "";
+
+            return stateCopy;
+        }
+
+        case UPDATE_NEW_POST_TEXT: {
+            const stateCopy = { ...state };
+
             if (action.newText) {
-                state.newPostText = action.newText;
+                stateCopy.newPostText = action.newText;
             }
-            return state;
-        default:
-            return state;
+            return stateCopy;
+        }
 
+        default: {
+            return state;
+        }
     }
-
 };
 
 export const addPostCreator = (): ActionType => {
@@ -41,7 +54,6 @@ export const addPostCreator = (): ActionType => {
     };
 };
 export const updateNewPostCreator = (text: string): ActionType => {
-
     return {
         type: UPDATE_NEW_POST_TEXT,
         newText: text
