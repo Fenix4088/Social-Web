@@ -1,4 +1,4 @@
-import { ActionType, dialogsPageDataType } from "./entities";
+import {dialogsPageDataType, SendMessageActionType, UpdateNewMessageActionType} from "./entities";
 
 const SEND_MESSAGE = "SEND-MESSAGE";
 const UPDATE_NEW_MESSAGE_TEXT = "UPDATE_NEW_MESSAGE_TEXT";
@@ -46,7 +46,7 @@ const initialState = {
 
 export const dialogsPageReducer = (
     state: dialogsPageDataType = initialState,
-    action: ActionType
+    action: SendMessageActionType & UpdateNewMessageActionType
 ): dialogsPageDataType => {
     switch (action.type) {
         case UPDATE_NEW_MESSAGE_TEXT: {
@@ -73,12 +73,12 @@ export const dialogsPageReducer = (
     }
 };
 
-export const sendMessageCreator = (): ActionType => {
+export const sendMessageCreator = (): SendMessageActionType => {
     return {
         type: SEND_MESSAGE
     };
 };
-export const updateNewMessageCreator = (messageText: string): ActionType => {
+export const updateNewMessageCreator = (messageText: string): UpdateNewMessageActionType => {
     return {
         type: UPDATE_NEW_MESSAGE_TEXT,
         newText: messageText

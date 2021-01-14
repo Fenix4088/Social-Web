@@ -1,4 +1,4 @@
-import { ActionType, profilePageDataType } from "./entities";
+import {AddPostActionType, profilePageDataType, UpdateNewPostActionType} from "./entities";
 
 const ADD_POST = "ADD-POST";
 const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
@@ -14,7 +14,7 @@ const initialState = {
 
 export const profilePageReducer = (
     state: profilePageDataType = initialState,
-    action: ActionType
+    action: AddPostActionType & UpdateNewPostActionType
 ): profilePageDataType => {
     switch (action.type) {
         case ADD_POST: {
@@ -42,12 +42,12 @@ export const profilePageReducer = (
     }
 };
 
-export const addPostCreator = (): ActionType => {
+export const addPostCreator = (): AddPostActionType => {
     return {
         type: ADD_POST
     };
 };
-export const updateNewPostCreator = (text: string): ActionType => {
+export const updateNewPostCreator = (text: string): UpdateNewPostActionType => {
     return {
         type: UPDATE_NEW_POST_TEXT,
         newText: text

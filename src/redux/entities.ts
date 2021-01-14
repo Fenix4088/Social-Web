@@ -4,7 +4,7 @@ export type StateType = {
     sidebar: sidebarType;
 };
 
-//Main Types
+//! MAIN TYPES
 export type profilePageDataType = {
     postsData: Array<PostsDataType>;
     newPostText: string;
@@ -17,7 +17,35 @@ export type dialogsPageDataType = {
 export type sidebarType = {
     friends: Array<FriendsItemType>;
 };
-// /Main Types
+//! / MAIN TYPES
+
+//? ACTION TYPES
+
+/*export type ActionType = {
+    type: string;
+    newText?: string;
+};*/
+// DialogsPage
+export type SendMessageActionType = {
+    type: string;
+}
+export type UpdateNewMessageActionType = {
+    type: string;
+    newText: string;
+}
+// /DialogsPage
+// ProfilePage
+export type AddPostActionType = {
+    type: string;
+}
+
+export type UpdateNewPostActionType = {
+    type: string;
+    newText: string;
+}
+// /ProfilePage
+
+//? / ACTION TYPES
 
 export type PostsDataType = {
     id: number;
@@ -38,7 +66,4 @@ export type FriendsItemType = {
     name: string;
     logo: string;
 };
-export type ActionType = {
-    type: string;
-    newText?: string;
-};
+
