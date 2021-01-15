@@ -2,12 +2,12 @@ import React, {ChangeEvent, useContext} from "react";
 import { Message } from "./Message/Message";
 import { DialogItem } from "./DialogItem/DialogItem";
 import classes from "./Dialogs.module.scss";
-import {dialogsPageDataType} from "../../redux/entities";
+import {DialogsPageDataType} from "../../redux/entities";
 
 type DialogsPropsType = {
     updateNewMessage: (value: string) => void
     onSendBtnClick: () => void
-    dialogsPageData: dialogsPageDataType
+    dialogsPageData: DialogsPageDataType
 };
 
 export const Dialogs: React.FC<DialogsPropsType> = (props) => {

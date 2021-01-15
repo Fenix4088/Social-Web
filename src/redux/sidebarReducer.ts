@@ -1,4 +1,4 @@
-import {sidebarType} from "./entities";
+import {SidebarType} from "./entities";
 
 const initialState = {
     friends: [
@@ -23,6 +23,6 @@ const initialState = {
     ]
 }
 
-export const sidebarReducer = (state: sidebarType = initialState, action: any) => {
+export const sidebarReducer = (state: SidebarType = initialState, action: any) => {
     return state;
 };

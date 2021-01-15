@@ -1,4 +1,4 @@
-import { dialogsPageDataType } from "./entities";
+import { DialogsPageDataType } from "./entities";
 
 type SendMessageActionType = {
     type: typeof SEND_MESSAGE;
@@ -54,9 +54,9 @@ const initialState = {
 };
 
 export const dialogsPageReducer = (
-    state: dialogsPageDataType = initialState,
+    state: DialogsPageDataType = initialState,
     action: ActionsType
-): dialogsPageDataType => {
+): DialogsPageDataType => {
     switch (action.type) {
         case UPDATE_NEW_MESSAGE_TEXT: {
             const stateCopy = { ...state };

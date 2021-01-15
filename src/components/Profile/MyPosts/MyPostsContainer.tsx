@@ -3,7 +3,7 @@ import { addPostCreator, updateNewPostCreator } from "../../../redux/profilePage
 import MyPosts from "./MyPosts";
 import { AppStateType, StoreType } from "../../../redux/reduxStore";
 import { connect } from "react-redux";
-import { PostsDataType, profilePageDataType } from "../../../redux/entities";
+import { PostsDataType, ProfilePageDataType } from "../../../redux/entities";
 import { Dispatch } from "redux";
 
 type MapStateType = {

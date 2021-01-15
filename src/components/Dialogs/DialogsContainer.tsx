@@ -3,12 +3,12 @@ import {sendMessageCreator, updateNewMessageCreator} from "../../redux/dialogsPa
 import {AppStateType, StoreType} from "../../redux/reduxStore";
 import {Dialogs} from "./Dialogs";
 import {connect} from "react-redux";
-import {dialogsPageDataType} from "../../redux/entities";
+import {DialogsPageDataType} from "../../redux/entities";
 import {Dispatch} from "redux";
 
 
 type MapStatePropsType = {
-    dialogsPageData: dialogsPageDataType
+    dialogsPageData: DialogsPageDataType
 }
 
 type MapDispatchPropsType = {

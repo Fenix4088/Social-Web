@@ -1,21 +1,25 @@
 export type StateType = {
-    profilePageData: profilePageDataType;
-    dialogsPageData: dialogsPageDataType;
-    sidebar: sidebarType;
+    profilePageData: ProfilePageDataType;
+    dialogsPageData: DialogsPageDataType;
+    sidebar: SidebarType;
 };
 
 //! MAIN TYPES
-export type profilePageDataType = {
+export type ProfilePageDataType = {
     postsData: Array<PostsDataType>;
     newPostText: string;
 };
-export type dialogsPageDataType = {
+export type DialogsPageDataType = {
     dialogsData: Array<DialogItemType>;
     messagesData: Array<MessageDataType>;
     newMessageText: string;
 };
-export type sidebarType = {
+export type SidebarType = {
     friends: Array<FriendsItemType>;
+};
+
+export type UsersPageDataType = {
+    users: Array<UserType>;
 };
 //! / MAIN TYPES
 
@@ -39,3 +43,15 @@ export type FriendsItemType = {
     logo: string;
 };
 
+export type UserType = {
+    id: number;
+    followed: boolean,
+    fullName: string;
+    status: string;
+    location: UserLocationType;
+};
+
+type UserLocationType = {
+    city: string;
+    country: string;
+};

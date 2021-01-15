@@ -1,4 +1,4 @@
-import { profilePageDataType } from "./entities";
+import { ProfilePageDataType } from "./entities";
 
 type AddPostActionType = {
     type: typeof ADD_POST;
@@ -22,9 +22,9 @@ const initialState = {
 };
 
 export const profilePageReducer = (
-    state: profilePageDataType = initialState,
+    state: ProfilePageDataType = initialState,
     action: ActionsType
-): profilePageDataType => {
+): ProfilePageDataType => {
     switch (action.type) {
         case ADD_POST: {
             const newPost = {
