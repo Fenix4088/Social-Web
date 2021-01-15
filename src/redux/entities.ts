@@ -45,6 +45,7 @@ export type FriendsItemType = {
 
 export type UserType = {
     id: number;
+    userLogo: string;
     followed: boolean,
     fullName: string;
     status: string;

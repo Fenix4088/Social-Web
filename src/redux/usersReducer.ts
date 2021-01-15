@@ -20,6 +20,7 @@ const initialState: UsersPageDataType = {
     users: [
 /*        {
             id: 1,
+            userLogo: "https://pbs.twimg.com/profile_images/684655178553819136/F_XaeU8d_400x400.jpg",
             followed: false,
             fullName: "Yehor",
             status: "I am a BOSS!!",
@@ -30,6 +31,7 @@ const initialState: UsersPageDataType = {
         },
         {
             id: 2,
+            userLogo: "https://pbs.twimg.com/profile_images/684655178553819136/F_XaeU8d_400x400.jpg",
             followed: true,
             fullName: "Dima",
             status: "I am a BOSS!!",
@@ -40,6 +42,7 @@ const initialState: UsersPageDataType = {
         },
         {
             id: 3,
+            userLogo: "https://pbs.twimg.com/profile_images/684655178553819136/F_XaeU8d_400x400.jpg",
             followed: false,
             fullName: "Tania",
             status: "I am a BOSS!!",
@@ -55,7 +58,7 @@ const FOLLOW: "FOLLOW" = "FOLLOW";
 const UNFOLLOW: "UNFOLLOW" = "UNFOLLOW";
 const SET_USERS: "SET-USERS" = "SET-USERS";
 
-const usersReducer = (state: UsersPageDataType = initialState, action: ActionsType): UsersPageDataType => {
+export const usersReducer = (state: UsersPageDataType = initialState, action: ActionsType): UsersPageDataType => {
     switch (action.type) {
         case FOLLOW:
             return {
