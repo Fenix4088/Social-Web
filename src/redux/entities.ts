@@ -44,12 +44,21 @@ export type FriendsItemType = {
 };
 
 export type UserType = {
-    id: number;
+/*    id: number;
     userLogo: string;
     followed: boolean,
-    fullName: string;
+    name: string;
     status: string;
-    location: UserLocationType;
+    location: UserLocationType;*/
+
+    "name": string,
+    "id": number,
+    "photos": {
+        "small": string | null,
+        "large": string | null
+    },
+    "status": null,
+    "followed": boolean
 };
 
 type UserLocationType = {
