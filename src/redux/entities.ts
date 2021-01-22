@@ -20,6 +20,9 @@ export type SidebarType = {
 
 export type UsersPageDataType = {
     users: Array<UserType>;
+    pageSize: number,
+    totalUsersCount: number
+    currentPage: number
 };
 //! / MAIN TYPES
 

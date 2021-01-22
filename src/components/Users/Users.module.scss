@@ -3,3 +3,11 @@
   border-radius: 50%;
   object-fit: cover;
 }
+
+.pagesWrapper  {
+  cursor: pointer;
+}
+
+.selectedPage {
+  font-weight: bold;
+}
