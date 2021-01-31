@@ -3,7 +3,7 @@ import { UserType } from "../../redux/entities";
 import s from "./Users.module.scss";
 import userPhoto from "../../assets/img/user01.png";
 import axios from "axios";
-import {log} from "util";
+import { log } from "util";
 
 type UsersPropsType = {
     users: Array<UserType>;
@@ -42,72 +42,115 @@ export class Users extends React.Component<UsersPropsType> {
             });
     };
 
+    calcPagination = (pages: Array<number>, current: number) => {
+        let last = pages.length,
+            delta = 2,
+            left = current - delta,
+            right = current + delta,
+            range = [],
+            rangeWithDots = [],
+            l;
+
+        range.push(1);
+        for (let i = left; i <= right; i++) {
+            if (i >= left && i < right && i < last && i > 1) {
+                range.push(i);
+            }
+        }
+        range.push(last);
+        console.log(range)
+        for (let i of range) {
+            if (l) {
+                if (i - l === 2) {
+                    rangeWithDots.push(l + 1);
+                } else if (i - l !== 1) {
+                    rangeWithDots.push("...");
+                }
+            }
+            rangeWithDots.push(i);
+            l = i;
+        }
+
+        return rangeWithDots;
+    };
+
+    renderPagination = (pagesArr: Array<number | string>) => {
+        return pagesArr.map((p) => {
+            return (
+                <>
+                    <span
+                        onClick={() => {
+                            typeof p === 'number' && this.onPageChanged(p);
+                        }}
+                        className={this.props.currentPage === p ? s.selectedPage : ""}
+                    >
+                        {p}
+                    </span>
+                </>
+            );
+        });
+    };
+
+    renderUsers = (usersArr: Array<UserType>) => {
+        return usersArr.map((u) => {
+            return (
+                <div key={u.id}>
+                    <span>
+                        <div className={s.userLogo}>
+                            <img src={u.photos.small ? u.photos.small : userPhoto} alt="UserLogo" />
+                        </div>
+                        <div>
+                            {u.followed ? (
+                                <button
+                                    onPointerDown={() => {
+                                        this.props.unfollow(u.id);
+                                    }}
+                                >
+                                    Unfollow
+                                </button>
+                            ) : (
+                                <button
+                                    onPointerDown={() => {
+                                        this.props.follow(u.id);
+                                    }}
+                                >
+                                    Follow
+                                </button>
+                            )}
+                        </div>
+                    </span>
+                    <span>
+                        <span>
+                            <div>{u.name}</div>
+                            <div>{u.status}</div>
+                        </span>
+                        <span>
+                            <div>{"u.location.country"}</div>
+                            <div>{"u.location.city"}</div>
+                        </span>
+                    </span>
+                </div>
+            );
+        });
+    };
+
     render() {
         const pagesCount = Math.ceil(this.props.totalUsersCount / this.props.pageSize);
         const pages: Array<number> = [];
         for (let i = 1; i <= pagesCount; i++) {
             pages.push(i);
         }
-
-        console.log(pages)
+        const visiblePages = this.calcPagination(pages, this.props.currentPage);
 
         return (
             <div>
                 <div className={s.pagesWrapper}>
-                    {pages.map((p) => {
-                        return (
-                            <span
-                                onClick={() => {
-                                    this.onPageChanged(p);
-                                }}
-                                className={this.props.currentPage === p ? s.selectedPage : ""}
-                            >
-                                {p}
-                            </span>
-                        );
-                    })}
+                    {this.renderPagination(visiblePages)}
                 </div>
-
-                {this.props.users.map((u) => {
-                    return (
-                        <div key={u.id}>
-                            <span>
-                                <div className={s.userLogo}>
-                                    <img src={u.photos.small ? u.photos.small : userPhoto} alt="UserLogo" />
-                                </div>
-                                <div>
-                                    {u.followed ? (
-                                        <button
-                                            onPointerDown={() => {
-                                                this.props.unfollow(u.id);
-                                            }}
-                                        >
-                                            Unfollow
-                                        </button>
-                                    ) : (
-                                        <button
-                                            onPointerDown={() => {
-                                                this.props.follow(u.id);
-                                            }}
-                                        >
-                                            Follow
-                                        </button>
-                                    )}
-                                </div>
-                            </span>
-                            <span>
-                                <span>
-                                    <div>{u.name}</div>
-                                    <div>{u.status}</div>
-                                </span>
-                                <span>
-                                    <div>{"u.location.country"}</div>
-                                    <div>{"u.location.city"}</div>
-                                </span>
-                            </span>
-                        </div>
-                    );
-                })}
+                {this.renderUsers(this.props.users)}
+                <div className={s.pagesWrapper}>
+                    {this.renderPagination(visiblePages)}
+                </div>
             </div>
         );
     }
