@@ -3,6 +3,7 @@ import { UserType } from "../../redux/entities";
 import s from "./Users.module.scss";
 import userPhoto from "../../assets/img/user01.png";
 import axios from "axios";
+import {log} from "util";
 
 type UsersPropsType = {
     users: Array<UserType>;
@@ -13,8 +14,7 @@ type UsersPropsType = {
     unfollow: (userId: number) => void;
     setUsers: (users: Array<UserType>) => void;
     setCurrentPage: (pageNumber: number) => void;
-    setTotalUsersCount: (totalUsersCount: number) => void
-
+    setTotalUsersCount: (totalUsersCount: number) => void;
 };
 
 export class Users extends React.Component<UsersPropsType> {
@@ -36,9 +36,7 @@ export class Users extends React.Component<UsersPropsType> {
     onPageChanged = (pageNumber: number) => {
         this.props.setCurrentPage(pageNumber);
         axios
-            .get(
-                `https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`
-            )
+            .get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`)
             .then((response) => {
                 this.props.setUsers(response.data.items);
             });
@@ -50,6 +48,8 @@ export class Users extends React.Component<UsersPropsType> {
         for (let i = 1; i <= pagesCount; i++) {
             pages.push(i);
         }
+
+        console.log(pages)
 
         return (
             <div>
@@ -65,7 +65,6 @@ export class Users extends React.Component<UsersPropsType> {
                                 {p}
                             </span>
                         );
-                        // return <span className={this.props.currentPage === p && s.selectedPage}>{p}</span>;
                     })}
                 </div>
 
