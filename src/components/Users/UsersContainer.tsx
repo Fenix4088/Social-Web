@@ -3,15 +3,22 @@ import { connect } from "react-redux";
 import { Dispatch } from "redux";
 import { AppStateType } from "../../redux/reduxStore";
 import { UserType } from "../../redux/entities";
-import {followAC, setCurrentPageAC, setUsersAC, setUsersTotalCountAC, unfollowAC} from "../../redux/usersReducer";
+import {
+    followAC,
+    setCurrentPageAC,
+    setIsFetchingAC,
+    setUsersAC,
+    setUsersTotalCountAC,
+    unfollowAC
+} from "../../redux/usersReducer";
 import {UsersAPIComponent} from "./UsersAPIComponent";
 
 type MapStateToPropsType = {
     users: Array<UserType>;
     pageSize: number;
     totalUsersCount: number;
-    currentPage: number
-
+    currentPage: number;
+    isFetching: boolean;
 };
 
 type MapDispatchToProps = {
@@ -20,6 +27,7 @@ type MapDispatchToProps = {
     setUsers: (users: Array<UserType>) => void
     setCurrentPage: (pageNumber: number) => void
     setTotalUsersCount: (totalUsersCount: number) => void
+    toggleIsFetching: (isFetching: boolean) => void
 };
 
 const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
@@ -28,6 +36,7 @@ const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
         pageSize: state.usersPage.pageSize,
         totalUsersCount: state.usersPage.totalUsersCount,
         currentPage: state.usersPage.currentPage,
+        isFetching: state.usersPage.isFetching
     };
 };
 const mapDispatchToProps = (dispatch: Dispatch): MapDispatchToProps => {
@@ -46,6 +55,9 @@ const mapDispatchToProps = (dispatch: Dispatch): MapDispatchToProps => {
         },
         setTotalUsersCount: (totalUsersCount: number) => {
             dispatch(setUsersTotalCountAC(totalUsersCount))
+        },
+        toggleIsFetching: (isFetching: boolean) => {
+            dispatch(setIsFetchingAC(isFetching));
         }
     };
 };
