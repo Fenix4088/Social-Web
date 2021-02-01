@@ -48,12 +48,12 @@ export const profilePageReducer = (
     }
 };
 
-export const addPostCreator = (): AddPostActionType => {
+export const addPost = (): AddPostActionType => {
     return {
         type: ADD_POST
     };
 };
-export const updateNewPostCreator = (text: string): UpdateNewPostActionType => {
+export const updateNewPost = (text: string): UpdateNewPostActionType => {
     return {
         type: UPDATE_NEW_POST_TEXT,
         newText: text

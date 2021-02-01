@@ -82,12 +82,12 @@ export const dialogsPageReducer = (
     }
 };
 
-export const sendMessageCreator = (): SendMessageActionType => {
+export const sendMessage = (): SendMessageActionType => {
     return {
         type: SEND_MESSAGE
     };
 };
-export const updateNewMessageCreator = (messageText: string): UpdateNewMessageActionType => {
+export const updateNewMessage = (messageText: string): UpdateNewMessageActionType => {
     return {
         type: UPDATE_NEW_MESSAGE_TEXT,
         newText: messageText

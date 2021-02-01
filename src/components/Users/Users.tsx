@@ -17,8 +17,6 @@ type UsersPropsType = {
 };
 
 export const Users: React.FC<UsersPropsType> = (props) => {
-
-
     const calcPagination = (pages: Array<number>, current: number) => {
         let last = pages.length,
             delta = 2,

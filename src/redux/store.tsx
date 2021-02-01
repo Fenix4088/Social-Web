@@ -47,7 +47,6 @@ export type ActionType = {
     newText?: string;
 };*/
 
-
 //! Fake Store
 /*export const store = {
     _state: {
@@ -141,6 +140,3 @@ export type ActionType = {
         this._callSubscriber(this._state);
     }
 };*/
-
-
-

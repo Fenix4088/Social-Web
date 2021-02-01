@@ -1,4 +1,4 @@
-import {SidebarType} from "./entities";
+import { SidebarType } from "./entities";
 
 const initialState = {
     friends: [
@@ -17,11 +17,10 @@ const initialState = {
         {
             id: 3,
             name: "Dima",
-            logo:
-                "https://funnypicture.org/wallpaper/2015/05/funny-cartoon-faces-28-high-resolution-wallpaper.png"
+            logo: "https://funnypicture.org/wallpaper/2015/05/funny-cartoon-faces-28-high-resolution-wallpaper.png"
         }
     ]
-}
+};
 
 export const sidebarReducer = (state: SidebarType = initialState, action: any) => {
     return state;

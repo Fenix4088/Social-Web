@@ -20,10 +20,10 @@ export type SidebarType = {
 
 export type UsersPageDataType = {
     users: Array<UserType>;
-    pageSize: number,
-    totalUsersCount: number
-    currentPage: number
-    isFetching: boolean
+    pageSize: number;
+    totalUsersCount: number;
+    currentPage: number;
+    isFetching: boolean;
 };
 //! / MAIN TYPES
 
@@ -48,21 +48,21 @@ export type FriendsItemType = {
 };
 
 export type UserType = {
-/*    id: number;
+    /*    id: number;
     userLogo: string;
     followed: boolean,
     name: string;
     status: string;
     location: UserLocationType;*/
 
-    "name": string,
-    "id": number,
-    "photos": {
-        "small": string | null,
-        "large": string | null
-    },
-    "status": null,
-    "followed": boolean
+    name: string;
+    id: number;
+    photos: {
+        small: string | null;
+        large: string | null;
+    };
+    status: null;
+    followed: boolean;
 };
 
 type UserLocationType = {
