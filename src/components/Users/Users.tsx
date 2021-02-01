@@ -58,7 +58,6 @@ export class Users extends React.Component<UsersPropsType> {
             }
         }
         range.push(last);
-        console.log(range)
         for (let i of range) {
             if (l) {
                 if (i - l === 2) {

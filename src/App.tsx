@@ -17,7 +17,6 @@ import {UsersContainer} from "./components/Users/UsersContainer";
 
 const App: React.FC = () => {
 
-
     return (
         <div className="app-wrapper">
             <Header/>
