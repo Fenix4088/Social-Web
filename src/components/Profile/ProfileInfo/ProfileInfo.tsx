@@ -1,7 +1,15 @@
 import React from "react";
 import classes from "./ProfileInfo.module.scss";
+import {UserProfileItemT} from "../../../redux/entities";
+import {Preloader} from "../../common/Preloader/Preloader";
+type ProfileInfoPropsT = {
+    profile: UserProfileItemT
+}
 
-const ProfileInfo = () => {
+const ProfileInfo: React.FC<ProfileInfoPropsT> = (props) => {
+/*    if(!props.profile) {
+        return <div><Preloader/></div>
+    }*/
     return (
         <div>
             <div>
@@ -11,7 +19,12 @@ const ProfileInfo = () => {
                     alt="Background personal"
                 />
             </div>
-            <div className={classes.descriptionBlock}>avatar + desc</div>
+            <div className={classes.descriptionBlock}>
+                <img src={
+                    props.profile.photos
+                        ? (props.profile.photos.large ? props.profile.photos.large : "")
+                        : ""} alt="FF"/>
+            </div>
         </div>
     );
 };

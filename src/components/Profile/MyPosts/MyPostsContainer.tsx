@@ -1,10 +1,9 @@
 import React from "react";
 import { addPost, updateNewPost } from "../../../redux/profilePageReducer";
 import MyPosts from "./MyPosts";
-import { AppStateType, StoreType } from "../../../redux/reduxStore";
+import { AppStateType} from "../../../redux/reduxStore";
 import { connect } from "react-redux";
-import { PostsDataType, ProfilePageDataType } from "../../../redux/entities";
-import { Dispatch } from "redux";
+import { PostsDataType } from "../../../redux/entities";
 
 type MapStateType = {
     posts: Array<PostsDataType>;
