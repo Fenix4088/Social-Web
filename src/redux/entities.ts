@@ -63,20 +63,20 @@ type UserLocationType = {
     country: string;
 };
 export type UserProfileItemT = {
-    aboutMe: string;
+    aboutMe: string | null;
     contacts: {
-        facebook: string;
+        facebook: string | null;
         website: string | null;
-        vk: string;
-        twitter: string;
-        instagram: string;
+        vk: string | null;
+        twitter: string | null;
+        instagram: string | null;
         youtube: string | null;
-        github: string;
+        github: string | null;
         mainLink: string | null;
     };
     lookingForAJob: boolean;
-    lookingForAJobDescription: string;
-    fullName: string;
+    lookingForAJobDescription: string | null;
+    fullName: string | null;
     userId: number;
     photos: {
         small: string;

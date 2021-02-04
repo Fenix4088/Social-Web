@@ -7,9 +7,10 @@ type ProfileInfoPropsT = {
 }
 
 const ProfileInfo: React.FC<ProfileInfoPropsT> = (props) => {
-/*    if(!props.profile) {
+    console.log(props.profile.contacts)
+    if(!props.profile) {
         return <div><Preloader/></div>
-    }*/
+    }
     return (
         <div>
             <div>
@@ -20,10 +21,18 @@ const ProfileInfo: React.FC<ProfileInfoPropsT> = (props) => {
                 />
             </div>
             <div className={classes.descriptionBlock}>
-                <img src={
-                    props.profile.photos
-                        ? (props.profile.photos.large ? props.profile.photos.large : "")
-                        : ""} alt="FF"/>
+                <img src={props.profile.photos?.large ? props.profile.photos.large : ""} alt="LargeUserPhoto"/>
+                <ul>
+                    <li>{props.profile.fullName}</li>
+                    <li>{props.profile.aboutMe}</li>
+                    <li>{props.profile.lookingForAJob ? "Yes" : "No"}</li>
+                    <li>{props.profile.lookingForAJobDescription}</li>
+                </ul>
+                <div>Contacts:
+                    { props.profile.contacts && Object.entries(props.profile.contacts).map(value => {
+                        return value[1] && <div><a href={value[1]}>{value[0]}</a></div>
+                    })}
+                </div>
             </div>
         </div>
     );
