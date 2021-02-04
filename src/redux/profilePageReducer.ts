@@ -25,7 +25,8 @@ const initialState = {
         { id: 2, message: "Nice weather", likes: 6 },
         { id: 3, message: "I was in Rome!!!!", likes: 0 }
     ],
-    newPostText: ""
+    newPostText: "",
+    defaultUserId: 2
 };
 
 export const profilePageReducer = (
