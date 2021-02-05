@@ -20,7 +20,6 @@ const mapStateToProps = (state: AppStateType): MapStatePropsType => {
     };
 };
 
-// <TStateProps = {}, TDispatchProps = {}, TOwnProps = {}, State = DefaultState>
 export const DialogsContainer = connect<MapStatePropsType, MapDispatchPropsType, {}, AppStateType>(mapStateToProps, {
     updateNewMessage,
     sendMessage

@@ -10,14 +10,13 @@ type ProfileContainerPropsT = {
     defaultUserId: number;
 };
 type RouteType = {
-    userId: number;
+    userId: string;
 };
 
-export class ProfileContainer extends React.Component<ProfileContainerPropsT & RouteComponentProps> {
+export class ProfileContainer extends React.Component<ProfileContainerPropsT & RouteComponentProps<RouteType>> {
     componentDidMount() {
 
-        let userId: any = (this.props.match.params as RouteType).userId;
-        // let userId = this.props.match.params.userId;
+        let userId = +this.props.match.params.userId;
 
         if(!userId) {
             userId = 2;
