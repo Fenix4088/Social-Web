@@ -26,6 +26,17 @@ export type UsersPageDataType = {
     currentPage: number;
     isFetching: boolean;
 };
+export type AuthT = {
+    "data": {
+        id?: number | null,
+        login?: string | null,
+        email?: string | null
+    },
+    "messages": Array<any>,
+    "fieldsErrors": Array<any>,
+    "resultCode": number,
+    isAuth: boolean
+}
 //! / MAIN TYPES
 
 export type PostsDataType = {
