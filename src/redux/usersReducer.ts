@@ -1,8 +1,7 @@
 import { UsersPageDataType, UserType } from "./entities";
 import { ThunkAction } from "redux-thunk";
-import { Action } from "redux";
 import { AppStateType } from "./reduxStore";
-import { getUsers } from "../API/api";
+import {usersAPI} from "../API/api";
 
 type FollowACT = {
     type: typeof FOLLOW;
@@ -156,8 +155,9 @@ export const toggleFollowingProgress = (followingInProgress: boolean, userId: nu
 // * Thunks
 export const getUsersThunkCreator = (currentPage: number, pageSize: number): UserReducerThunkT => (dispatch) => {
     dispatch(setIsFetching(true));
+    dispatch(setCurrentPage(currentPage));
 
-    getUsers(currentPage, pageSize).then((data) => {
+    usersAPI.getUsers(currentPage, pageSize).then((data) => {
         dispatch(setIsFetching(false));
         dispatch(setUsers(data.items));
         dispatch(setTotalUsersCount(data.totalCount));

@@ -1,10 +1,9 @@
 import React from "react";
 import Header from "./Header";
-import axios from "axios";
 import {connect} from "react-redux";
 import {AppStateType} from "../../redux/reduxStore";
 import {setAuthUserData, setUserPhoto} from "../../redux/authReducer";
-import {authorization, getUserProfile} from "../../API/api";
+import {authorization, usersAPI} from "../../API/api";
 
 type HeaderContainerPropsT = {
     setAuthUserData: (id: number, email: string, login: string) => void
@@ -24,7 +23,7 @@ class HeaderContainer extends React.Component<HeaderContainerPropsT> {
                 }
             })
             .then(id => {
-                getUserProfile(id).then(data => {
+                usersAPI.getUserProfile(id).then(data => {
                         this.props.setUserPhoto(data.photos.large)
                     })
             })

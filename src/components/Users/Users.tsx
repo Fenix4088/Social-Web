@@ -12,8 +12,6 @@ type UsersPropsType = {
     totalUsersCount: number;
     follow: (userId: number) => void;
     unfollow: (userId: number) => void;
-    setUsers: (users: Array<UserType>) => void;
-    setCurrentPage: (pageNumber: number) => void;
     setTotalUsersCount: (totalUsersCount: number) => void;
     onPageChanged: (pageNumber: number) => void;
     toggleFollowingProgress: (followingInProgress: boolean, userId: number) => void;
