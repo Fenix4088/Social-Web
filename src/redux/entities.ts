@@ -25,6 +25,8 @@ export type UsersPageDataType = {
     totalUsersCount: number;
     currentPage: number;
     isFetching: boolean;
+    followingInProgress: boolean;
+    followingUsers: Array<number>
 };
 export type AuthT = {
     "data": {
