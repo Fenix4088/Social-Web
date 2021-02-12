@@ -6,7 +6,7 @@ import { Preloader } from "../common/Preloader/Preloader";
 import { connect } from "react-redux";
 import { AppStateType } from "../../redux/reduxStore";
 import {
-    follow,
+    follow, getUsersThunkCreator,
     setCurrentPage,
     setIsFetching,
     setTotalUsersCount,
@@ -33,17 +33,21 @@ type MapDispatchToPropsT = {
     setTotalUsersCount: (totalUsersCount: number) => void;
     setIsFetching: (isFetching: boolean) => void;
     toggleFollowingProgress: (followingInProgress: boolean, userId: number) => void
+    getUsersThunkCreator: (currentPage:number, pageSize:number) => void
 };
 
 class UsersContainer extends React.Component<MapStateToPropsT & MapDispatchToPropsT> {
     componentDidMount() {
-        this.props.setIsFetching(true);
+/*        this.props.setIsFetching(true);
         const { currentPage, pageSize } = this.props;
         getUsers(currentPage, pageSize).then((data) => {
             this.props.setIsFetching(false);
             this.props.setUsers(data.items);
             this.props.setTotalUsersCount(data.totalCount);
-        });
+        });*/
+        const { currentPage, pageSize, getUsersThunkCreator } = this.props;
+
+        getUsersThunkCreator(currentPage, pageSize)
     }
 
     componentDidUpdate() {
@@ -120,5 +124,6 @@ export default connect<MapStateToPropsT, MapDispatchToPropsT, {}, AppStateType>(
     setCurrentPage,
     setTotalUsersCount,
     setIsFetching,
-    toggleFollowingProgress
+    toggleFollowingProgress,
+    getUsersThunkCreator
 })(UsersContainer);
