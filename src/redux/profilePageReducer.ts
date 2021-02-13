@@ -1,4 +1,7 @@
 import { ProfilePageDataType, UserProfileItemT } from "./entities";
+import {ThunkAction} from "redux-thunk";
+import {AppStateType} from "./reduxStore";
+import {usersAPI} from "../API/api";
 
 type AddPostActionType = {
     type: typeof ADD_POST;
@@ -13,6 +16,8 @@ type SetUserProfileT = {
 };
 
 type ActionsType = AddPostActionType | UpdateNewPostActionType | SetUserProfileT;
+
+type ProfilePageReducerThunkT<ReturnType = void> = ThunkAction<ReturnType, AppStateType, unknown, ActionsType>;
 
 const ADD_POST = "ADD-POST";
 const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
@@ -61,6 +66,7 @@ export const profilePageReducer = (
     }
 };
 
+// * Action creators
 export const addPost = (): AddPostActionType => {
     return {
         type: ADD_POST
@@ -78,3 +84,12 @@ export const setUserProfile = (profile: UserProfileItemT): SetUserProfileT => {
         profile
     };
 };
+// * //Action creators
+
+// * Thunks
+export const getUserProfile = (userId: number):ProfilePageReducerThunkT => dispatch => {
+    usersAPI.getUserProfile(userId).then((data) => {
+        dispatch(setUserProfile(data));
+    });
+}
+// * Thunks

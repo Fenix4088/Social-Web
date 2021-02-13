@@ -1,9 +1,8 @@
-import React, { ChangeEvent, useContext } from "react";
+import React, { ChangeEvent} from "react";
 import { Message } from "./Message/Message";
 import { DialogItem } from "./DialogItem/DialogItem";
 import classes from "./Dialogs.module.scss";
 import { DialogsPageDataType } from "../../redux/entities";
-import { sendMessage } from "../../redux/dialogsPageReducer";
 
 type DialogsPropsType = {
     updateNewMessage: (value: string) => void;
