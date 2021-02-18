@@ -1,22 +1,23 @@
 import React from "react";
 import Profile from "./Profile";
 import { UserProfileItemT } from "../../redux/entities";
-import { RouteComponentProps } from "react-router-dom";
-import {AppStateType} from "../../redux/reduxStore";
-import {connect} from "react-redux";
-import {getUserProfile} from "../../redux/profilePageReducer";
-import {withRouter} from "react-router";
+import { RouteComponentProps, Redirect } from "react-router-dom";
+import { AppStateType } from "../../redux/reduxStore";
+import { connect } from "react-redux";
+import { getUserProfile } from "../../redux/profilePageReducer";
+import { withRouter } from "react-router";
 
 type ProfileContainerPropsT = {
     getUserProfile: (userId: number) => void;
     profile: UserProfileItemT;
     defaultUserId: number;
+    isAuth: boolean;
 };
 type RouteType = {
     userId: string;
 };
 
- class ProfileContainer extends React.Component<ProfileContainerPropsT & RouteComponentProps<RouteType>> {
+class ProfileContainer extends React.Component<ProfileContainerPropsT & RouteComponentProps<RouteType>> {
     componentDidMount() {
         let userId = +this.props.match.params.userId;
 
@@ -24,23 +25,27 @@ type RouteType = {
             userId = 2;
         }
 
-        this.props.getUserProfile(userId)
+        this.props.getUserProfile(userId);
     }
 
     render() {
+        if (!this.props.isAuth) return <Redirect to={"/login"}/>
+
         return <Profile {...this.props} profile={this.props.profile} />;
     }
 }
 
 type mapStateToPropsT = {
-    profile: UserProfileItemT
-    defaultUserId: number
-}
+    profile: UserProfileItemT;
+    defaultUserId: number;
+    isAuth: boolean;
+};
 
-const mapStateToProps = (state: AppStateType): mapStateToPropsT  => {
+const mapStateToProps = (state: AppStateType): mapStateToPropsT => {
     return {
         profile: state.profilePageData.profile,
-        defaultUserId: state.profilePageData.defaultUserId
+        defaultUserId: state.profilePageData.defaultUserId,
+        isAuth: state.auth.isAuth
     };
 };
 

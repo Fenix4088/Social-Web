@@ -2,10 +2,10 @@ import React from "react";
 import Header from "./Header";
 import { connect } from "react-redux";
 import { AppStateType } from "../../redux/reduxStore";
-import {authUser} from "../../redux/authReducer";
+import {getAuthUserData} from "../../redux/authReducer";
 
 type HeaderContainerPropsT = {
-    authUser: () => void;
+    getAuthUserData: () => void;
     isAuth: boolean;
     login: string | null;
     photoPath: string | null;
@@ -13,7 +13,7 @@ type HeaderContainerPropsT = {
 
 class HeaderContainer extends React.Component<HeaderContainerPropsT> {
     componentDidMount() {
-        this.props.authUser()
+        this.props.getAuthUserData()
     }
 
     render() {
@@ -30,4 +30,4 @@ const mapStateToProps = (state: AppStateType) => {
     };
 };
 
-export default connect(mapStateToProps, { authUser })(HeaderContainer);
+export default connect(mapStateToProps, { getAuthUserData })(HeaderContainer);

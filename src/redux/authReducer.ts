@@ -79,7 +79,7 @@ export const setUserPhoto = (photoPath: string): SetUserPhotoAT => {
 // * /Actions
 
 // * Thunks
-export const authUser = (): authReducerThunkT => (dispatch) => {
+export const getAuthUserData = (): authReducerThunkT => (dispatch) => {
     usersAPI
         .authorization()
         .then((data) => {
