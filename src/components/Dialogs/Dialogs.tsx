@@ -9,7 +9,6 @@ type DialogsPropsType = {
     updateNewMessage: (value: string) => void;
     sendMessage: () => void;
     dialogsPageData: DialogsPageDataType;
-    isAuth: boolean
 };
 
 export const Dialogs: React.FC<DialogsPropsType> = (props) => {
@@ -21,7 +20,6 @@ export const Dialogs: React.FC<DialogsPropsType> = (props) => {
     };
     const onSendBtnClick = () => props.sendMessage();
 
-    if(!props.isAuth) return <Redirect to={"/login"}/>
 
     return (
         <div className={classes.dialog}>
