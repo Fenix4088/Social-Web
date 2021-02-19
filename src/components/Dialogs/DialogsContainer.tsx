@@ -5,6 +5,7 @@ import { Dialogs } from "./Dialogs";
 import { connect } from "react-redux";
 import { DialogsPageDataType } from "../../redux/entities";
 import {AuthRedirect} from "../HOC/AuthRedirect";
+import {compose} from "redux";
 
 type MapStatePropsType = {
     dialogsPageData: DialogsPageDataType;
@@ -21,7 +22,15 @@ const mapStateToProps = (state: AppStateType): MapStatePropsType => {
     };
 };
 
-export const DialogsContainer = connect<MapStatePropsType, MapDispatchPropsType, {}, AppStateType>(mapStateToProps, {
+export const DialogsContainer =  compose<React.ComponentType>(
+    connect(mapStateToProps, {
+        updateNewMessage,
+        sendMessage
+    }),
+    AuthRedirect
+)(Dialogs);
+
+/*export const DialogsContainer = connect(mapStateToProps, {
     updateNewMessage,
     sendMessage
-})(AuthRedirect(Dialogs));
+})(AuthRedirect(Dialogs));*/
