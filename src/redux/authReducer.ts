@@ -1,7 +1,7 @@
 import { AuthT, DialogsPageDataType } from "./entities";
 import { ThunkAction } from "redux-thunk";
 import { AppStateType } from "./reduxStore";
-import { usersAPI } from "../API/api";
+import {profileAPI, usersAPI} from "../API/api";
 
 export type SetAuthUserDataAT = {
     type: typeof SET_USER_DATA;
@@ -90,7 +90,7 @@ export const getAuthUserData = (): authReducerThunkT => (dispatch) => {
             }
         })
         .then((id) => {
-            usersAPI.getUserProfile(id).then((data) => {
+            profileAPI.getUserProfile(id).then((data) => {
                 dispatch(setUserPhoto(data.photos.large));
             });
         });
