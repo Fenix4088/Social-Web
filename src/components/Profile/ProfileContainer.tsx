@@ -46,6 +46,6 @@ const mapStateToProps = (state: AppStateType): mapStateToPropsT => {
     };
 };
 
-export default compose<React.ComponentType>(connect(mapStateToProps, { getUserProfile }), withRouter, AuthRedirect)(ProfileContainer);
+export default compose<React.ComponentType>(connect(mapStateToProps, { getUserProfile }), withRouter, /*AuthRedirect*/)(ProfileContainer);
 
 // export default connect(mapStateToProps, { getUserProfile })(withRouter(AuthRedirect(ProfileContainer)));
