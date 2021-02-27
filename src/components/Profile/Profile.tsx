@@ -14,7 +14,7 @@ const Profile: React.FC<ProfilePropsT> = (props) => {
     return (
         <main>
             <ProfileInfo profile={profile} status={status} updateUserStatus={updateUserStatus}/>
-            <MyPostsContainer />
+            <MyPostsContainer/>
         </main>
     );
 };
