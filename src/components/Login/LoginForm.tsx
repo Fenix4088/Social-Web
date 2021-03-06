@@ -1,25 +1,23 @@
 import React from "react";
-import {reduxForm, Field, InjectedFormProps} from "redux-form";
+import { reduxForm, Field, InjectedFormProps } from "redux-form";
 
 type FormDataT = {
-    login: string,
-    password: string,
-    rememberMe: boolean
-}
-
+    login: string;
+    password: string;
+    rememberMe: boolean;
+};
 
 const LoginForm = (props: InjectedFormProps<FormDataT>) => {
-
     return (
         <form onSubmit={props.handleSubmit}>
             <div>
-                <Field type={"text"} placeholder={"Login"} name={"login"} component={"input"}/>
+                <Field type={"text"} placeholder={"Login"} name={"login"} component={"input"} />
             </div>
             <div>
-                <Field type={"text"} placeholder={"Password"} name={"password"} component={"input"}/>
+                <Field type={"text"} placeholder={"Password"} name={"password"} component={"input"} />
             </div>
             <div>
-                <Field type="checkbox" name={"rememberMe"} component={"input"}/> remember me
+                <Field type="checkbox" name={"rememberMe"} component={"input"} /> remember me
             </div>
             <div>
                 <button>Login</button>
@@ -29,5 +27,5 @@ const LoginForm = (props: InjectedFormProps<FormDataT>) => {
 };
 
 export default reduxForm<FormDataT>({
-    form: 'login',
-})(LoginForm)
+    form: "login"
+})(LoginForm);

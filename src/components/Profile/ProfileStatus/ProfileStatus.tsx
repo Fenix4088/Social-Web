@@ -49,8 +49,6 @@ export class ProfileStatus extends React.Component<ProfileStatusPropsT, ProfileS
     }
 
     render() {
-        console.log("props", this.props.status);
-        console.log("state", this.state.status);
         const { status } = this.state;
 
         return (

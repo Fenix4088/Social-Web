@@ -28,8 +28,8 @@ const ProfileInfo: React.FC<ProfileInfoPropsT> = (props) => {
                     <li>{props.profile.lookingForAJobDescription}</li>
                 </ul>
                 <div>Contacts:
-                    {props.profile.contacts && Object.entries(props.profile.contacts).map(value => {
-                        return value[1] && <div><a href={value[1]}>{value[0]}</a></div>
+                    {props.profile.contacts && Object.entries(props.profile.contacts).map((value, i) => {
+                        return value[1] && <div key={i}><a href={value[1]}>{value[0]}</a></div>
                     })}
                 </div>
             </div>
