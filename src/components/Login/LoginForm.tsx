@@ -16,7 +16,7 @@ const LoginForm = (props: InjectedFormProps<FormDataT>) => {
                 <Field type={"text"} placeholder={"Login"} name={"login"} component={Input} validate={[requiredField]}/>
             </div>
             <div>
-                <Field type={"text"} placeholder={"Password"} name={"password"} component={Input} validate={[requiredField]}/>
+                <Field type={"password"} placeholder={"Password"} name={"password"} component={Input} validate={[requiredField]}/>
             </div>
             <div>
                 <Field type="checkbox" name={"rememberMe"} component={Input} validate={[requiredField]}/> remember me

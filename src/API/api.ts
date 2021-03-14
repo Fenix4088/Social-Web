@@ -8,6 +8,24 @@ const instance = axios.create({
     }
 });
 
+export const authApi = {
+    authorization: () => {
+        return instance.get(`auth/me`).then((response) => response.data);
+    },
+
+    login: (email: string, password: string, rememberMe: boolean = false) => {
+        return instance
+            .post(`/auth/login`, {
+                email,
+                password,
+                rememberMe
+            })
+            .then((response) => response.data);
+    },
+    logout: () => {
+        return instance.delete(`/auth/login`);
+    }
+};
 
 export const usersAPI = {
     getUsers: (currentPage: number, pageSize: number) => {
@@ -20,15 +38,17 @@ export const usersAPI = {
 
     unfollowUser: (userId: number) => {
         return instance.delete(`follow/${userId}`).then((response) => response.data);
-    },
-    authorization: () => {
-        return instance.get(`auth/me`).then((response) => response.data);
     }
-}
+};
 
 export const profileAPI = {
     getUserProfile: (userId: number) => {
-        return instance.get(`profile/${userId}`).then((response) => response.data);
+        return instance
+            .get(`profile/${userId}`)
+            .then((response) => response.data)
+            .catch((error) => {
+                console.error("Client message: You are not authorized");
+            });
     },
     getStatus: (userId: number) => {
         return instance.get(`profile/status/${userId}`).then((response) => response.data);
@@ -36,9 +56,6 @@ export const profileAPI = {
     updateStatus: (status: string) => {
         return instance.put(`profile/status`, {
             status
-        })
+        });
     }
-
-}
-
-
+};
