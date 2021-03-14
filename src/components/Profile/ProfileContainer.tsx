@@ -61,4 +61,3 @@ export default compose<React.ComponentType>(
     withRouter /*AuthRedirect*/
 )(ProfileContainer);
 
-// export default connect(mapStateToProps, { getUserProfile })(withRouter(AuthRedirect(ProfileContainer)));
