@@ -3,6 +3,7 @@ import classes from "./ProfileInfo.module.scss";
 import {UserProfileItemT} from "../../../redux/entities";
 import {Preloader} from "../../common/Preloader/Preloader";
 import {ProfileStatus} from "../ProfileStatus/ProfileStatus";
+import {ProfileStatusHooks} from "../ProfileStatus/ProfileStatusHooks";
 
 type ProfileInfoPropsT = {
     profile: UserProfileItemT
@@ -18,7 +19,8 @@ const ProfileInfo: React.FC<ProfileInfoPropsT> = (props) => {
 
     return (
         <div>
-            <ProfileStatus status={status} updateUserStatus={props.updateUserStatus}/>
+            {/*<ProfileStatus status={status} updateUserStatus={props.updateUserStatus}/>*/}
+            <ProfileStatusHooks status={status} updateUserStatus={props.updateUserStatus}/>
             <div className={classes.descriptionBlock}>
                 <img src={props.profile.photos?.large ? props.profile.photos.large : ""} alt="LargeUserPhoto"/>
                 <ul>
