@@ -1,5 +1,20 @@
 import axios from "axios";
 
+type APIResponseData<D = {}, RC = ResultCodesEnum> = {
+    resultCode: RC
+    messages: Array<string>,
+    data: D
+}
+
+export enum ResultCodesEnum {
+    Success = 0,
+    Error = 1,
+}
+
+type LoginResponseT = {
+    userId: number;
+}
+
 const instance = axios.create({
     withCredentials: true,
     baseURL: "https://social-network.samuraijs.com/api/1.0/",
@@ -15,7 +30,7 @@ export const authApi = {
 
     login: (email: string, password: string, rememberMe: boolean = false) => {
         return instance
-            .post(`/auth/login`, {
+            .post<APIResponseData<LoginResponseT>>(`/auth/login`, {
                 email,
                 password,
                 rememberMe
