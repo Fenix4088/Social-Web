@@ -12,7 +12,7 @@ import {
     getFollowingUsers,
     getIsFetching,
     getPageSize,
-    getTotalUsersCounte,
+    getTotalUsersCount,
     getUsers
 } from "../../redux/selectors/usersSelectors";
 
@@ -76,22 +76,11 @@ class UsersContainer extends React.Component<MapStateToPropsT & MapDispatchToPro
     }
 }
 
-/*const mapStateToProps = (state: AppStateType): MapStateToPropsT => {
-    return {
-        users: state.usersPage.users,
-        pageSize: state.usersPage.pageSize,
-        totalUsersCount: state.usersPage.totalUsersCount,
-        currentPage: state.usersPage.currentPage,
-        isFetching: state.usersPage.isFetching,
-        followingUsers: state.usersPage.followingUsers
-    };
-};*/
-
 const mapStateToProps = (state: AppStateType): MapStateToPropsT => {
     return {
         users: getUsers(state),
         pageSize: getPageSize(state),
-        totalUsersCount: getTotalUsersCounte(state),
+        totalUsersCount: getTotalUsersCount(state),
         currentPage: getCurrentPage(state),
         isFetching: getIsFetching(state),
         followingUsers: getFollowingUsers(state)

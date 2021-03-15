@@ -1,4 +1,4 @@
-import React, {ChangeEvent, RefObject} from "react";
+import React, {ChangeEvent} from "react";
 
 type ProfileStatusPropsT = {
     status: string;

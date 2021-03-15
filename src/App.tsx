@@ -22,15 +22,13 @@ type AppPropsT = MapStateToPropsT & {
 type MapStateToPropsT = ReturnType<typeof mapStateToProps>
 
 class App extends React.Component<AppPropsT & RouteComponentProps> {
-
     componentDidMount() {
-
         this.props.initializeApp();
     }
 
     render() {
-        if(!this.props.initialized) {
-            return <Preloader/>
+        if (!this.props.initialized) {
+            return <Preloader />;
         }
         return (
             <div className="app-wrapper">
