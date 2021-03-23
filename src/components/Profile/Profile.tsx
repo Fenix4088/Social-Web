@@ -10,6 +10,7 @@ type ProfilePropsT = {
 }
 
 const Profile: React.FC<ProfilePropsT> = (props) => {
+    console.log("Profile")
     const {profile, status, updateUserStatus} = props;
     return (
         <main>

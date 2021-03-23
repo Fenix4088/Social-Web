@@ -9,7 +9,7 @@ type MyPostsPropsType = {
     addPost: (param: string) => void;
 };
 
-const MyPosts: React.FC<MyPostsPropsType> = (props) => {
+const MyPosts: React.FC<MyPostsPropsType> = React.memo((props) => {
 
     const addNewPost = (values: AddPostFormT) => props.addPost(values.addPostBody);
 
@@ -24,7 +24,7 @@ const MyPosts: React.FC<MyPostsPropsType> = (props) => {
             </div>
         </div>
     );
-};
+});
 
 export default MyPosts;
 
