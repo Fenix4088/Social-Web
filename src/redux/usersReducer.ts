@@ -1,8 +1,8 @@
 import { UsersPageDataType, UserType } from "./entities";
-import {ThunkAction, ThunkDispatch} from "redux-thunk";
+import {ThunkAction} from "redux-thunk";
 import {AppDispatchType, AppStateType} from "./reduxStore";
 import {APIResponseData, usersAPI} from "../API/api";
-import {Action} from "redux";
+import {updateobjectInArr} from "../utils/object-helpers";
 
 type FollowACT = ReturnType<typeof followSuccess>
 type UnFollowACT = ReturnType<typeof unfollowSuccess>
@@ -46,12 +46,12 @@ export const usersReducer = (state: UsersPageDataType = initialState, action: Ac
         case FOLLOW:
             return {
                 ...state,
-                users: state.users.map((u) => (u.id === action.userId ? { ...u, followed: true } : u))
+                users: updateobjectInArr(state.users, action.userId, "id", {followed: true})
             };
         case UNFOLLOW:
             return {
                 ...state,
-                users: state.users.map((u) => (u.id === action.userId ? { ...u, followed: false } : u))
+                users: updateobjectInArr(state.users, action.userId, "id", {followed: false})
             };
         case SET_USERS:
             return {
