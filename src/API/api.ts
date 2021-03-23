@@ -1,6 +1,6 @@
 import axios from "axios";
 
-type APIResponseData<D = {}, RC = ResultCodesEnum> = {
+export type APIResponseData<D = {}, RC = ResultCodesEnum> = {
     resultCode: RC
     messages: Array<string>,
     data: D
