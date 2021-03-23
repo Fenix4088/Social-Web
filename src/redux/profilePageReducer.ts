@@ -3,27 +3,17 @@ import { ThunkAction } from "redux-thunk";
 import { AppStateType } from "./reduxStore";
 import { profileAPI } from "../API/api";
 
-type AddPostActionType = {
-    type: typeof ADD_POST;
-    newPostText: string;
-};
+type AddPostActionType = ReturnType<typeof addPost>;
+type DeletePostAT = ReturnType<typeof deletePost>;
+type SetUserProfileT = ReturnType<typeof setUserProfile>;
+type SetStatusT = ReturnType<typeof setStatus>;
 
-type SetUserProfileT = {
-    type: typeof SET_USER_PROFILE;
-    profile: UserProfileItemT;
-};
-
-type SetStatusT = {
-    type: typeof SET_STATUS;
-    status: string;
-};
-
-type ActionsType = AddPostActionType | SetUserProfileT | SetStatusT;
+type ActionsType = AddPostActionType | SetUserProfileT | SetStatusT | DeletePostAT;
 
 type ProfilePageReducerThunkT<ReturnType = void> = ThunkAction<ReturnType, AppStateType, unknown, ActionsType>;
 
 const ADD_POST = "ADD-POST";
-const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
+const DELETE_POST = "DELETE-POST";
 const SET_USER_PROFILE = "SET-USER-PROFILE";
 const SET_STATUS = "SET-STATUS";
 
@@ -52,7 +42,6 @@ export const profilePageReducer = (
 
             return { ...state, postsData: [...state.postsData, newPost] };
         }
-
         case SET_USER_PROFILE:
             return {
                 ...state,
@@ -60,6 +49,8 @@ export const profilePageReducer = (
             };
         case SET_STATUS:
             return { ...state, status: action.status };
+        case DELETE_POST:
+            return { ...state, postsData: state.postsData.filter(item => item.id !== action.postId)};
         default: {
             return state;
         }
@@ -67,24 +58,29 @@ export const profilePageReducer = (
 };
 
 // * Action creators
-export const addPost = (newPostText: string): AddPostActionType => {
+export const addPost = (newPostText: string) => {
     return {
         type: ADD_POST,
         newPostText
-    };
+    } as const;
 };
-
-export const setUserProfile = (profile: UserProfileItemT): SetUserProfileT => {
+export const deletePost = (postId: number) => {
+    return {
+        type: DELETE_POST,
+        postId
+    } as const;
+};
+export const setUserProfile = (profile: UserProfileItemT) => {
     return {
         type: SET_USER_PROFILE,
         profile
-    };
+    } as const;
 };
-export const setStatus = (status: string): SetStatusT => {
+export const setStatus = (status: string) => {
     return {
         type: SET_STATUS,
         status
-    };
+    } as const;
 };
 // * //Action creators
 
