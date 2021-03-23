@@ -1,10 +1,10 @@
-import { applyMiddleware, combineReducers, createStore } from "redux";
+import {Action, applyMiddleware, combineReducers, createStore} from "redux";
 import { profilePageReducer } from "./profilePageReducer";
 import { dialogsPageReducer } from "./dialogsPageReducer";
 import { sidebarReducer } from "./sidebarReducer";
 import { usersReducer } from "./usersReducer";
 import { authReducer } from "./authReducer";
-import thunk from "redux-thunk";
+import thunk, {ThunkDispatch} from "redux-thunk";
 import { reducer as formReducer } from "redux-form";
 import { appReducer } from "./appReducer";
 
@@ -21,6 +21,8 @@ const rootReducer = combineReducers({
 });
 
 export type AppStateType = ReturnType<typeof rootReducer>;
+
+export type AppDispatchType<AT extends Action> = ThunkDispatch<AppStateType, unknown, AT>;
 
 export const store = createStore(rootReducer, applyMiddleware(thunk));
 

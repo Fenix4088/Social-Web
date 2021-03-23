@@ -1,7 +1,8 @@
 import { UsersPageDataType, UserType } from "./entities";
 import {ThunkAction, ThunkDispatch} from "redux-thunk";
-import { AppStateType } from "./reduxStore";
+import {AppDispatchType, AppStateType} from "./reduxStore";
 import {APIResponseData, usersAPI} from "../API/api";
+import {Action} from "redux";
 
 type FollowACT = ReturnType<typeof followSuccess>
 type UnFollowACT = ReturnType<typeof unfollowSuccess>
@@ -88,7 +89,7 @@ export const usersReducer = (state: UsersPageDataType = initialState, action: Ac
 type apiMethodT = (userId: number) => Promise<APIResponseData>;
 type followUnfollowFlowACTs = (param: number) => FollowACT | UnFollowACT;
 
-const followUnfollowFlow = async (dispatch: ThunkDispatch<AppStateType, unknown, ActionsType>, userId: number, apiMethod: apiMethodT, actionCreator: followUnfollowFlowACTs) => {
+const followUnfollowFlow = async (dispatch: AppDispatchType<ActionsType>, userId: number, apiMethod: apiMethodT, actionCreator: followUnfollowFlowACTs) => {
     dispatch(toggleFollowingProgress(true, userId));
     const data = await apiMethod(userId);
     console.log(data)
