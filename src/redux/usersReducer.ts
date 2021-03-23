@@ -153,34 +153,32 @@ export const toggleFollowingProgress = (followingInProgress: boolean, userId: nu
 //* /Action Creators
 
 // * Thunks
-export const requestUsers = (currentPage: number, pageSize: number): UserReducerThunkT => (dispatch) => {
+export const requestUsers = (currentPage: number, pageSize: number): UserReducerThunkT => async (dispatch) => {
     dispatch(setIsFetching(true));
     dispatch(setCurrentPage(currentPage));
 
-    usersAPI.getUsers(currentPage, pageSize).then((data) => {
-        dispatch(setIsFetching(false));
-        dispatch(setUsers(data.items));
-        dispatch(setTotalUsersCount(data.totalCount));
-    });
+    const data = await usersAPI.getUsers(currentPage, pageSize);
+
+    dispatch(setIsFetching(false));
+    dispatch(setUsers(data.items));
+    dispatch(setTotalUsersCount(data.totalCount));
 };
-export const follow = (userId: number): UserReducerThunkT => (dispatch) => {
+export const follow = (userId: number): UserReducerThunkT => async (dispatch) => {
     dispatch(toggleFollowingProgress(true, userId));
 
-    usersAPI.followUser(userId).then((data) => {
-        if (data.resultCode === 0) {
-            dispatch(followSuccess(userId));
-        }
-        dispatch(toggleFollowingProgress(false, userId));
-    });
+    const data = await usersAPI.followUser(userId);
+    if (data.resultCode === 0) {
+        dispatch(followSuccess(userId));
+    }
+    dispatch(toggleFollowingProgress(false, userId));
 };
-export const unfollow = (userId: number): UserReducerThunkT => (dispatch) => {
+export const unfollow = (userId: number): UserReducerThunkT => async (dispatch) => {
     dispatch(toggleFollowingProgress(true, userId));
 
-    usersAPI.unfollowUser(userId).then((data) => {
-        if (data.resultCode === 0) {
-            dispatch(unfollowSuccess(userId));
-        }
-        dispatch(toggleFollowingProgress(false, userId));
-    });
+    const data = await usersAPI.unfollowUser(userId);
+    if (data.resultCode === 0) {
+        dispatch(unfollowSuccess(userId));
+    }
+    dispatch(toggleFollowingProgress(false, userId));
 };
 // * /Thunks

@@ -50,7 +50,7 @@ export const profilePageReducer = (
         case SET_STATUS:
             return { ...state, status: action.status };
         case DELETE_POST:
-            return { ...state, postsData: state.postsData.filter(item => item.id !== action.postId)};
+            return { ...state, postsData: state.postsData.filter((item) => item.id !== action.postId) };
         default: {
             return state;
         }
@@ -85,24 +85,21 @@ export const setStatus = (status: string) => {
 // * //Action creators
 
 // * Thunks
-export const getUserProfile = (userId: number): ProfilePageReducerThunkT => (dispatch) => {
-    profileAPI.getUserProfile(userId).then((data) => {
-        dispatch(setUserProfile(data));
-    });
+export const getUserProfile = (userId: number): ProfilePageReducerThunkT => async (dispatch) => {
+    const data = await profileAPI.getUserProfile(userId);
+    dispatch(setUserProfile(data));
 };
 
-export const getUserStatus = (userId: number): ProfilePageReducerThunkT => (dispatch) => {
-    profileAPI.getStatus(userId).then((data) => {
-        dispatch(setStatus(data));
-    });
+export const getUserStatus = (userId: number): ProfilePageReducerThunkT => async (dispatch) => {
+    const data = await profileAPI.getStatus(userId);
+    dispatch(setStatus(data));
 };
 
-export const updateUserStatus = (status: string): ProfilePageReducerThunkT => (dispatch) => {
-    profileAPI.updateStatus(status).then((data) => {
-        if (data.data.resultCode === 0) {
-            dispatch(setStatus(status));
-        }
-    });
+export const updateUserStatus = (status: string): ProfilePageReducerThunkT => async (dispatch) => {
+    const data = await profileAPI.updateStatus(status);
+    if (data.data.resultCode === 0) {
+        dispatch(setStatus(status));
+    }
 };
 
 // * Thunks

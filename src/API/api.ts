@@ -24,7 +24,7 @@ const instance = axios.create({
 });
 
 export const authApi = {
-    authorization: () => {
+    authorization:  () => {
         return instance.get(`auth/me`).then((response) => response.data);
     },
 

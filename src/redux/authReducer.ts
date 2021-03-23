@@ -1,12 +1,12 @@
 import { ThunkAction } from "redux-thunk";
 import { AppStateType } from "./reduxStore";
-import {authApi, profileAPI} from "../API/api";
-import {FormAction, stopSubmit} from "redux-form";
+import { authApi, profileAPI } from "../API/api";
+import { FormAction, stopSubmit } from "redux-form";
 
 export type SetAuthUserDataAT = {
     type: typeof SET_USER_DATA;
     payload: UserDataT;
-    isAuth: boolean
+    isAuth: boolean;
 };
 export type SetUserPhotoAT = {
     type: typeof SET_USER_PHOTO;
@@ -19,8 +19,8 @@ type UserDataT = {
     email: string | null;
 };
 
-const SET_USER_DATA = "SET-USER-DATA";
-const SET_USER_PHOTO = "SET-USER-PHOTO";
+const SET_USER_DATA = "socialNetwork/auth/SET-USER-DATA";
+const SET_USER_PHOTO = "socialNetwork/auth/SET-USER-PHOTO";
 
 type ActionsType = SetAuthUserDataAT | SetUserPhotoAT;
 
@@ -61,14 +61,19 @@ export const authReducer = (state: InitialStateType = initialState, action: Acti
 };
 
 // * Actions
-export const setAuthUserData = (id: number | null, email: string | null, login: string | null, isAuth: boolean): SetAuthUserDataAT => {
+export const setAuthUserData = (
+    id: number | null,
+    email: string | null,
+    login: string | null,
+    isAuth: boolean
+): SetAuthUserDataAT => {
     return {
         type: SET_USER_DATA,
         isAuth,
         payload: {
             id,
             email,
-            login,
+            login
         }
     };
 };
@@ -81,47 +86,33 @@ export const setUserPhoto = (photoPath: string): SetUserPhotoAT => {
 // * /Actions
 
 // * Thunks
-export const getAuthUserData = (): authReducerThunkT<Promise<any>> => (dispatch) => {
-    return authApi
-        .authorization()
-        .then((data) => {
-            if (data.resultCode === 0) {
-                const { id, email, login } = data.data;
-                dispatch(setAuthUserData(id, email, login, true));
-                return id;
-            }
-        })
-        .then((id) => {
-            profileAPI.getUserProfile(id).then((data) => {
-                data && dispatch(setUserPhoto(data.photos.large));
-            });
+export const getAuthUserData = (): authReducerThunkT<Promise<any>> => async (dispatch) => {
+    const data = await authApi.authorization();
+    const { id, email, login } = data.data;
+    if (data.resultCode === 0) {
+        dispatch(setAuthUserData(id, email, login, true));
+    }
 
-        })
+    const userData = await profileAPI.getUserProfile(id);
+    userData && dispatch(setUserPhoto(userData.photos.large));
 };
 
-export const login = (email: string, password: string, rememberMe: boolean): authReducerThunkT => (dispatch) => {
-    authApi.login(email, password, rememberMe)
-        .then(data => {
-            if (data.resultCode === 0) {
-                dispatch(getAuthUserData())
-            } else {
-                const errorMessage = data.messages.length > 0 ? data.messages[0] : "Some error";
-                dispatch(stopSubmit("login", {_error: errorMessage}))
-            }
-        })
-        .catch(error => console.error(error))
-
+export const login = (email: string, password: string, rememberMe: boolean): authReducerThunkT => async (dispatch) => {
+    const data = await authApi.login(email, password, rememberMe);
+    if (data.resultCode === 0) {
+        await dispatch(getAuthUserData());
+    } else {
+        const errorMessage = data.messages.length > 0 ? data.messages[0] : "Some error";
+        dispatch(stopSubmit("login", { _error: errorMessage }));
+    }
 };
 
+export const logout = (): authReducerThunkT => async (dispatch) => {
+    const data = await authApi.logout();
 
-export const logout = (): authReducerThunkT => (dispatch) => {
-    authApi.logout()
-        .then(data => {
-            if (data.data.resultCode === 0) {
-                dispatch(setAuthUserData(null, null, null, false));
-            }
-        })
-
+    if (data.data.resultCode === 0) {
+        dispatch(setAuthUserData(null, null, null, false));
+    }
 };
 
 // * /Thunks

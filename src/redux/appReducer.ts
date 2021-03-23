@@ -43,7 +43,7 @@ type appReducerThunkT<ReturnType = void> = ThunkAction<ReturnType, AppStateType,
 export const initializeApp = (): appReducerThunkT => (dispatch, getState) => {
     const promise = dispatch(getAuthUserData());
 
-    Promise.all([promise]).then((res) => {
+    Promise.all([promise]).then(() => {
         dispatch(initializedSuccess());
     });
 };
