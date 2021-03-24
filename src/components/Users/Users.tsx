@@ -3,6 +3,7 @@ import { UserType } from "../../redux/entities";
 import s from "./Users.module.scss";
 import userPhoto from "../../assets/img/user01.png";
 import { NavLink } from "react-router-dom";
+import { Paginator } from "../common/Paginator/Paginator";
 
 type UsersPropsType = {
     users: Array<UserType>;
@@ -17,52 +18,6 @@ type UsersPropsType = {
 };
 
 export const Users: React.FC<UsersPropsType> = (props) => {
-    const calcPagination = (pages: Array<number>, current: number) => {
-        let last = pages.length,
-            delta = 2,
-            left = current - delta,
-            right = current + delta,
-            range = [],
-            rangeWithDots = [],
-            l;
-
-        range.push(1);
-        for (let i = left; i <= right; i++) {
-            if (i >= left && i < right && i < last && i > 1) {
-                range.push(i);
-            }
-        }
-        range.push(last);
-        for (let i of range) {
-            if (l) {
-                if (i - l === 2) {
-                    rangeWithDots.push(l + 1);
-                } else if (i - l !== 1) {
-                    rangeWithDots.push("...");
-                }
-            }
-            rangeWithDots.push(i);
-            l = i;
-        }
-
-        return rangeWithDots;
-    };
-
-    const renderPagination = (pagesArr: Array<number | string>) => {
-        return pagesArr.map((p, i) => {
-            return (
-                <span
-                    key={i}
-                    onClick={() => {
-                        typeof p === "number" && props.onPageChanged(p);
-                    }}
-                    className={props.currentPage === p ? s.selectedPage : ""}
-                >
-                    {p}
-                </span>
-            );
-        });
-    };
 
     const renderUsers = (usersArr: Array<UserType>) => {
         return usersArr.map((u) => {
@@ -116,13 +71,24 @@ export const Users: React.FC<UsersPropsType> = (props) => {
     for (let i = 1; i <= pagesCount; i++) {
         pages.push(i);
     }
-    const visiblePages = calcPagination(pages, props.currentPage);
 
     return (
         <div>
-            <div className={s.pagesWrapper}>{renderPagination(visiblePages)}</div>
+            <div className={s.pagesWrapper}>
+                <Paginator
+                    totalPagesCount={pages}
+                    currentPage={props.currentPage}
+                    onPaginatorChange={props.onPageChanged}
+                />
+            </div>
             {renderUsers(props.users)}
-            <div className={s.pagesWrapper}>{renderPagination(visiblePages)}</div>
+            <div className={s.pagesWrapper}>
+                <Paginator
+                    totalPagesCount={pages}
+                    currentPage={props.currentPage}
+                    onPaginatorChange={props.onPageChanged}
+                />
+            </div>
         </div>
     );
 };

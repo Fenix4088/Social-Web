@@ -3,7 +3,7 @@ import LoginForm from "./LoginForm";
 import { connect } from "react-redux";
 import { login } from "../../redux/authReducer";
 import { Redirect } from "react-router-dom";
-import {AppStateType} from "../../redux/reduxStore";
+import { AppStateType } from "../../redux/reduxStore";
 
 type formDataT = {
     login: string;
@@ -17,7 +17,6 @@ type LoginPropsType = MapStateToPropsT & {
     login: (email: string, password: string, rememberMe: boolean) => void;
 };
 
-
 const Login = (props: LoginPropsType) => {
     const onSubmit = (formData: formDataT): void => {
         const { login: email, password, rememberMe } = formData;
@@ -25,8 +24,8 @@ const Login = (props: LoginPropsType) => {
         props.login(email, password, rememberMe);
     };
 
-    if(props.isAuth) {
-        return <Redirect to={`/profile/${props.id}`}/>
+    if (props.isAuth) {
+        return <Redirect to={`/profile/${props.id}`} />;
     }
 
     return (
@@ -41,8 +40,8 @@ const mapStateToProps = (state: AppStateType) => {
     return {
         isAuth: state.auth.isAuth,
         id: state.auth.data.id
-    }
-}
+    };
+};
 
 export default connect(mapStateToProps, {
     login
