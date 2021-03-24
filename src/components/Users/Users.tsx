@@ -1,9 +1,8 @@
 import React from "react";
 import { UserType } from "../../redux/entities";
 import s from "./Users.module.scss";
-import userPhoto from "../../assets/img/user01.png";
-import { NavLink } from "react-router-dom";
 import { Paginator } from "../common/Paginator/Paginator";
+import { User } from "./User/User";
 
 type UsersPropsType = {
     users: Array<UserType>;
@@ -18,54 +17,6 @@ type UsersPropsType = {
 };
 
 export const Users: React.FC<UsersPropsType> = (props) => {
-
-    const renderUsers = (usersArr: Array<UserType>) => {
-        return usersArr.map((u) => {
-            return (
-                <div key={u.id}>
-                    <span>
-                        <div className={s.userLogo}>
-                            <NavLink to={`/profile/${u.id}`}>
-                                <img src={u.photos.small ? u.photos.small : userPhoto} alt="UserLogo" />
-                            </NavLink>
-                        </div>
-                        <div>
-                            {u.followed ? (
-                                <button
-                                    disabled={props.followingUsers.some((id) => id === u.id)}
-                                    onPointerDown={() => {
-                                        props.unfollow(u.id);
-                                    }}
-                                >
-                                    Unfollow
-                                </button>
-                            ) : (
-                                <button
-                                    disabled={props.followingUsers.some((id) => id === u.id)}
-                                    onPointerDown={() => {
-                                        props.follow(u.id);
-                                    }}
-                                >
-                                    Follow
-                                </button>
-                            )}
-                        </div>
-                    </span>
-                    <span>
-                        <span>
-                            <div>{u.name}</div>
-                            <div>{u.status}</div>
-                        </span>
-                        <span>
-                            <div>{"u.location.country"}</div>
-                            <div>{"u.location.city"}</div>
-                        </span>
-                    </span>
-                </div>
-            );
-        });
-    };
-
     const pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
     const pages: Array<number> = [];
     for (let i = 1; i <= pagesCount; i++) {
@@ -81,7 +32,17 @@ export const Users: React.FC<UsersPropsType> = (props) => {
                     onPaginatorChange={props.onPageChanged}
                 />
             </div>
-            {renderUsers(props.users)}
+            {props.users.map((u) => {
+                return (
+                    <User
+                        key={u.id}
+                        user={u}
+                        follow={props.follow}
+                        unfollow={props.unfollow}
+                        followingUsers={props.followingUsers}
+                    />
+                );
+            })}
             <div className={s.pagesWrapper}>
                 <Paginator
                     totalPagesCount={pages}

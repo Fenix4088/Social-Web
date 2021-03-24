@@ -1,5 +1,7 @@
 import React from "react";
-import s from "../../Users/Users.module.scss";
+import s from "./Paginator.module.scss";
+
+
 
 type PaginatorPropsT = {
     totalPagesCount: Array<number>;
